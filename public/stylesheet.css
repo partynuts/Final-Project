@@ -1,0 +1,171 @@
+
+body {
+  background-size: cover;
+  background-color: rgb(238, 238, 238);
+}
+
+/* color: 57, 91, 82 */
+.headings {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 30% 20% 50%;
+}
+
+.logo {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+#logo {
+  max-width: 90%;
+  height: 440px;
+  padding-left: 10px;
+}
+
+h1 {
+  grid-row: 1;
+  grid-column: 1/3;
+  justify-self: center;
+  color: rgb(57, 91, 82);
+  font-size: 80px;
+  font-family: 'Cookie', cursive;
+  margin: 0;
+}
+
+h3 {
+  grid-column:2;
+  grid-row: 2;
+  justify-self: center;
+  color: rgb(55, 90, 80);
+  padding: 20px 6%;
+  text-align: end;
+  margin: 0;
+}
+
+.forms {
+  grid-column: 2;
+  /* grid-row: 3; */
+  justify-self: center;
+}
+
+.formContainer {
+  border-style: ridge;
+  border-radius: 4px;
+  height: 98%;
+}
+
+.form {
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  /* border-style: ridge;
+  border-radius: 4px; */
+  width: 500px;
+  height: 80%;
+  padding: 40px 10px 0 10px;
+
+}
+
+.inputs {
+  flex-wrap: wrap;
+  height:auto;
+  width: 300px;
+}
+
+.inputs > div {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  input {
+    width: 90%;
+    border: 2px solid gray;
+    background: white;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    padding: 8px 12px;
+    outline: 0;
+    border-radius: 4px;
+  }
+
+  input:valid {
+    background: transparent;
+  }
+
+  input:focus + label {
+    color: #999;
+    font-size: 70%;
+    padding: 1px 6px;
+    z-index: 2;
+    text-transform: uppercase;
+  }
+
+  label {
+    transition:
+    color 0.2s,
+    bottom 0.2s,
+    right 0.2s,
+    left 0.2s;
+    position: absolute;
+    color: #999;
+    padding: 7px 6px;
+  }
+
+  input {
+     padding: 12px 6px 12px 12px;
+   }
+
+   label {
+     bottom: 10%;
+     left: 0;
+     width: 100%;
+   }
+
+   input:focus {
+     padding: 23px 6px 12px 6px;
+   }
+
+   input:focus + label {
+     bottom: 65%;
+  }
+
+
+/* input {
+  width: 200px;
+  height: 30px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}*/
+
+/* input:focus{
+  box-shadow: 0px 0px 10px 4px #335855;
+
+} */
+
+.redirect {
+
+  font-size: 20px;
+  width: auto;
+  height: auto;
+  color: rgb(57, 91, 82);
+  text-align: center;
+}
+
+.submitBtn {
+border-radius: 5px;
+width: 98%;
+height: 30px;
+font-size:15px;
+font-weight: bolder;
+background-color: turquoise;
+}
+
+.submitBtn:hover {
+  cursor: pointer;
+  background-color: teal;
+}
+
+/* Get your green-thumbed pals together to trade plants, swap tips and maybe even enjoy a scone or two as the spring gardening season begins. */
