@@ -5,5 +5,7 @@ create table users(
   first varchar(250) not null,
   last varchar(250) not null,
   email varchar(250) not null unique,
-  pw varchar(250) not null
+  pw varchar(250) not null,
+  profilePic VARCHAR(500),
+  bio VARCHAR(500)
 );

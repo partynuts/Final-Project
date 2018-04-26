@@ -47,19 +47,19 @@ export class Register extends React.Component {
           <div className="inputs">
             <div>
               <input type="text" name="first" onChange={this.handleChange} />
-              <label>First Name</label>
+              <label >First Name</label>
             </div>
             <div>
-              <input name="last" onChange={this.handleChange} />
-              <label>Last Name</label>
+              <input type="text" name="last" onChange={this.handleChange} />
+              <label >Last Name</label>
             </div>
             <div>
-              <input name="email"  onChange={this.handleChange} />
-              <label>E-Mail</label>
+              <input type="email" name="email"  onChange={this.handleChange} />
+              <label >E-Mail</label>
             </div>
             <div>
               <input name="pw"  type="password" onChange={this.handleChange} />
-              <label>Password</label>
+              <label >Password</label>
             </div>
               <button className="submitBtn" onClick={this.submit}>Register</button>
           </div>

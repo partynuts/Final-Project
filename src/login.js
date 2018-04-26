@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "../axios";
-
+import {Link} from 'react-router-dom';
 
 export class Login extends React.Component {
   constructor(props) {
@@ -37,14 +37,26 @@ export class Login extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="formContainer">
         {this.state.error && <div className="errmsg">Something went wrong. Please try again</div>}
-        <div>
-          <input name="email" placeholder="E-Mail" onChange={this.handleChange} />
-          <input name="pw" placeholder="Password" type="password" onChange={this.handleChange} />
-          <button onClick={this.submit}>Log In</button>
+        <div className="form">
+         <div className="inputs">
+          <div>
+            <input name="email" type="email"  onChange={this.handleChange} />
+            <label>E-Mail</label>
+          </div>
+          <div>
+            <input name="pw"  type="password" onChange={this.handleChange} />
+            <label>Password</label>
+          </div>
+          <button className="submitBtn" onClick={this.submit}>Log In</button>
+
         </div>
       </div>
+      <div className="redirect">
+        <div>Not registered yet? Create an<Link to="/">  account</Link>!</div>
+      </div>
+    </div>
     );
   }
 }

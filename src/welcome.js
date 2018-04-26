@@ -25,6 +25,3 @@ export function Welcome(props) {
     </div>
   );
 }
-
-
-const formStyle = {gridColumn: "2", gridRow: "3", justifySelf: "center"}

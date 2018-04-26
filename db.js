@@ -23,7 +23,50 @@ function setLogin(mail) {
   .query(`SELECT *
     FROM users
     WHERE email = $1`, [mail]);
- 
+
 }
 
 exports.setLogin = setLogin;
+
+
+function insertImageData(url, id) {
+  return db
+  .query(`Update users
+  Set profilePic=$1
+  WHERE id=$2
+  Returning *`, [url, id])
+}
+
+exports.insertImageData = insertImageData;
+
+
+function insertBio(bio, id) {
+  return db
+  .query(`Update users
+  Set bio=$1
+  WHERE id=$2
+  Returning *`, [bio, id])
+}
+
+exports.insertBio = insertBio;
+
+
+function insertComments(username, comment, comment_id) {
+  return db
+  .query(`INSERT INTO comments (username, comment, comment_id)
+  VALUES ($1, $2, $3)
+  Returning *`, [username, comment, comment_id])
+}
+
+exports.insertComments = insertComments;
+
+
+function displayComments(comment_id) {
+  return db
+  .query(`SELECT *
+    FROM comments
+    WHERE comment_id = $1
+    ORDER BY timeSent DESC`, [comment_id])
+}
+
+exports.displayComments = displayComments;

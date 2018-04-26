@@ -4,7 +4,7 @@ import axios from "../axios";
 export function Logo(props) {
   return (
     <div className="logo">
-      <img id="logo" src="/plantswap.png"/>
+      <img id="logo"  className={props.small} src="/plantswap.png"/>
     </div>
   )
 
