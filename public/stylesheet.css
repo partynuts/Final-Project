@@ -97,6 +97,13 @@ h3 {
     background: transparent;
   }
 
+  input:valid + label {
+    position: absolute;
+    color: #999;
+    padding: 7px 6px;
+    font-size: 70%;
+  }
+
   input:focus + label {
     color: #999;
     font-size: 70%;
@@ -158,12 +165,12 @@ h3 {
 }
 
 .submitBtn {
-border-radius: 5px;
-width: 98%;
-height: 30px;
-font-size:15px;
-font-weight: bolder;
-background-color: teal;
+  border-radius: 5px;
+  width: 98%;
+  height: 30px;
+  font-size:15px;
+  font-weight: bolder;
+  background-color: teal;
 }
 
 .submitBtn:hover {
@@ -189,12 +196,28 @@ background-color: teal;
 }
 
 #welcome {
-  display: inline-block;
+  /* display: inline-block; */
   font-family: arial;
   color: teal;
   font-size: 15px;
-  text-align: right;
-    font-weight: bolder;
+  /* text-align: right; */
+  font-weight: bolder;
+}
+
+#logout {
+  display: block;
+  text-decoration: underline;
+  position: absolute;
+  vertical-align: bottom;
+  font-family: arial;
+  color: purple;
+  font-size: 13px;
+  font-weight: bolder;
+  top: 80px;
+}
+
+#logout:hover {
+  cursor: pointer;
 }
 
 #bioEdit {
@@ -267,7 +290,7 @@ height: 20vh;
 
 .bioBox {
   grid-row: 2;
-  margin: 10px 5px;
+  margin: 0px 5px;
   margin-left: 50px;
 }
 
@@ -278,7 +301,7 @@ height: 20vh;
 }
 
 .bioContent {
-  padding-top: 5vh;
+  padding-top: 1vh;
   font-family: arial;
   color: teal;
   font-size: 18px;

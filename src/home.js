@@ -5,6 +5,7 @@ import { Profile } from "./profile";
 import { Uploader } from "./uploader";
 import {BrowserRouter, Route, Link} from "react-router-dom";
 import { Userprofile} from "./userprofile.js";
+import {OtherProfile} from "./otherprofile.js"
 
 
 export class Home extends React.Component {
@@ -16,12 +17,13 @@ export class Home extends React.Component {
     this.showUploader = this.showUploader.bind(this);
     this.setBio = this.setBio.bind(this);
     this.setComment = this.setComment.bind(this);
+    this.logout = this.logout.bind(this);
     // this.componentDidMount = this.componentDidMount.bind(this); ==> you do NOT bind life cycle functions
   }
   componentDidMount() {
     console.log("mounted!!!!!!!!");
     axios
-      .get("/user")
+      .get("/userInfo")
       .then(response => { //wenn man eine arrow fn  benutzt, wird der "Inhalt" des this von der vorherigen funktion übernommen.
         if (response.data.success) {
           console.log("response data", response.data);
@@ -42,9 +44,18 @@ export class Home extends React.Component {
 
   }
 
+  logout() {
+    axios.get("/logout", this.state.userData.id)
+    .then(resp => {
+      console.log("logging out");
+       location.pathname = '/logout';
+     })
+  }
+
   showUploader() {
     this.setState({ uploaderIsVisible: !this.state.uploaderIsVisible })
   }
+
   changeImage() {
     var formData = new FormData();
     formData.append("file", this.state.file);
@@ -98,6 +109,9 @@ export class Home extends React.Component {
     })
   }
 
+  
+
+
   render() {
     return (
       <div>
@@ -109,6 +123,7 @@ export class Home extends React.Component {
           {this.state.userData && <Profile
               profilePic={this.state.userData.profilepic}
               first={this.state.userData.first}
+              logout={this.logout}
               showUploader = {() => this.setState({uploaderIsVisible: true})}
             /> }
 
@@ -121,9 +136,10 @@ export class Home extends React.Component {
         </header>
 
         <BrowserRouter>
+          <div>
           {this.state.userData &&  <div>
             <Route
-              path="/"
+              exact path="/"
               render={() => {
                 return (
                    <Userprofile
@@ -142,6 +158,12 @@ export class Home extends React.Component {
             />
           </div>
           }
+
+          <Route
+            exact path="/user/:userId"
+            component={OtherProfile} />
+
+          </div>
         </BrowserRouter>
 
       </div>

@@ -9,7 +9,13 @@ const {
   insertImageData,
   insertBio,
   insertComment,
-  displayComments
+  displayComments,
+  getProfileInfo,
+  makeFriendRequest,
+  changeFriendshipStatus,
+  checkFriendship,
+  cancelFriendshipRequest,
+  acceptFriendship
 } = require("./db.js");
 const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
@@ -81,40 +87,30 @@ if (process.env.NODE_ENV != "production") {
 //   db.getUserInfo(req.session.user)
 // })
 
-// app.get('/logout', (req, res) => {
-//   req.session = null;
-//   res.redirect('/welcome');
-// })
-
-app.get("/user", function(req, res) {
-  console.log("req.session.user", req.session.user);
+app.get("/userInfo", function(req, res) {
   setLogin(req.session.user.email)
     .then(function(result) {
-      console.log("result in user get route:", result.rows);
-      console.log("result.rows.first:", result.rows[0].first);
       displayComments(req.session.user.id)
-      .then(function(results) {
-        console.log(results);
-        // result.rows.forEach(item => {
-        //     let date = new Date (item.timeSent);
-        //       item.timeSent = date.toLocaleDateString();
-        // });
-        console.log("results in display comments get route:", results);
-      res.json({
-        success: true,
-        userData: result.rows[0],
-        wallData: results.rows
-      });
+        .then(function(results) {
+          // result.rows.forEach(item => {
+          //     let date = new Date (item.timeSent);
+          //       item.timeSent = date.toLocaleDateString();
+          // });
+          res.json({
+            success: true,
+            userData: result.rows[0],
+
+            wallData: results.rows
+          });
+        })
+        .catch(e => {
+          console.log(e);
+        });
     })
     .catch(e => {
       console.log(e);
     });
-  })
-  .catch(e => {
-    console.log(e);
-  });
 });
-
 
 app.get("/welcome", function(req, res) {
   if (req.session.user) {
@@ -124,21 +120,40 @@ app.get("/welcome", function(req, res) {
   }
 });
 
+app.get("/get-user/:userId", function(req, res) {
+  console.log("match params in get user:", req.params);
+  if (req.params.userId == req.session.user.id) {
+    return res.json({
+      sameProfile: true
+    });
+  }
+  getProfileInfo(req.params.userId)
+    .then(results => {
+      res.json({
+        success: true,
+        first: results.rows[0].first,
+        last: results.rows[0].last,
+        profilePic: results.rows[0].profilepic,
+        bio: results.rows[0].bio,
+        id: results.rows[0].id,
+        self: req.session.user.id,
+        sameProfile: false
+      });
+    })
+    .catch(e => {
+      console.log(e);
+    });
+});
 
 app.post("/register", function(req, res) {
-  console.log("TEST reg");
   let first = req.body.first;
   let last = req.body.last;
   let email = req.body.email;
   let pw = req.body.pw;
-  console.log(req.body.email);
   if (first && last && email && pw) {
     hashPassword(pw).then(function(results) {
-      console.log(results);
       setRegistration(first, last, email, results)
         .then(function(result) {
-          console.log(result);
-
           req.session.user = {
             id: result.rows[0].id,
             first: req.body.first,
@@ -155,7 +170,6 @@ app.post("/register", function(req, res) {
         });
     });
   } else {
-    console.log("error with registration!!");
     res.json({
       success: false
     });
@@ -169,7 +183,6 @@ app.post("/login", function(req, res) {
     setLogin(email).then(function(result) {
       let user = result.rows[0];
       if (!user) {
-        console.log("No user in db");
         res.json({
           success: false
         });
@@ -184,7 +197,6 @@ app.post("/login", function(req, res) {
               last: result.rows[0].last,
               email: req.body.email
             };
-            console.log("matching pw and signature");
             res.json({
               success: true,
               loggedIn: req.session.user.id
@@ -202,7 +214,6 @@ app.post("/login", function(req, res) {
         });
     });
   } else {
-    console.log("missed field in login");
     res.json({
       success: false
     });
@@ -210,14 +221,10 @@ app.post("/login", function(req, res) {
 });
 
 app.post("/uploader", uploader.single("file"), s3.upload, function(req, res) {
-  console.log("req.file:", req.file);
-
   if (req.file) {
-    console.log("success!", req.file);
     const imageUrl = config.s3Url + req.file.filename;
     insertImageData(imageUrl, req.session.user.id)
       .then(function(result) {
-        console.log("uploader result", result.rows);
         res.json({
           success: true,
           userData: result.rows[0]
@@ -235,12 +242,9 @@ app.post("/uploader", uploader.single("file"), s3.upload, function(req, res) {
 });
 
 app.post("/bio", function(req, res) {
-  console.log("the bio text:", req.body);
   if (req.body.bio) {
-
     insertBio(req.body.bio, req.session.user.id)
       .then(function(result) {
-        console.log("bio text reslut", result);
         res.json({
           success: true,
           bio: result.rows[0].bio
@@ -250,7 +254,6 @@ app.post("/bio", function(req, res) {
         console.log(e);
       });
   } else {
-    console.log("bio edit save FAILED!!");
     res.json({
       success: false
     });
@@ -258,12 +261,9 @@ app.post("/bio", function(req, res) {
 });
 
 app.post("/comment", function(req, res) {
-  console.log("the comment text:", req.body);
   if (req.body.comment && req.body.userName) {
-
     insertComment(req.body.comment, req.body.userName, req.session.user.id)
       .then(function(result) {
-        console.log("comment text result", result);
         res.json({
           success: true,
           wallData: result.rows[0]
@@ -280,6 +280,110 @@ app.post("/comment", function(req, res) {
       success: false
     });
   }
+});
+
+app.get("/friendship/:userId", function(req, res) {
+  console.log("req params in friendship", req.params.userId);
+  checkFriendship(req.session.user.id, req.params.userId)
+    .then(function(result) {
+      console.log("result FR",result);
+      if (result.rows.length == 0) {
+        res.json({
+          success: true,
+          status: 0,
+
+        });
+      } else {
+        res.json({
+          success: true,
+          status:result.rows[0].status,
+          receiver_id: result.rows[0].receiver_id,
+          sender_id: result.rows[0].sender_id,
+          friendshipId: result.rows[0].id,
+          timestamp: result.rows[0].created_at,
+          receivedRequest: req.session.user.id == result.rows[0].receiver_id
+        });
+      }
+    })
+    .catch(e => {
+      console.log(e);
+    });
+});
+
+app.post("/makeFriendship/:userId", function(req, res) {
+  console.log("friend request firing");
+
+  console.log("session user id", req.session.user.id);
+  console.log("params user in make friendship", req.params.userId);
+  makeFriendRequest(req.session.user.id, req.params.userId)
+    .then(function(result) {
+      console.log("result friend request", result);
+      res.json({
+        success: true,
+        status: result.rows[0].status,
+        receiver_id: result.rows[0].receiver_id,
+        sender_id: result.rows[0].sender_id,
+        friendshipId: result.rows[0].id,
+        timestamp: result.rows[0].created_at
+      });
+    })
+    .catch(e => {
+      console.log(e);
+    });
+});
+
+app.post("/cancelFriendship/:userId", function(req, res) {
+  console.log("cancel firing. user Id", req.session.user.id);
+  console.log("params userId in cancel fr", req.params.userId);
+
+  cancelFriendshipRequest(req.session.user.id, req.params.userId)
+    .then(function(result) {
+      res.json({
+        success: true,
+
+      });
+    })
+    .catch(e => {
+      console.log(e);
+    });
+});
+
+app.post("/acceptFriendship", function(rq, res) {
+  console.log("accept firing");
+  console.log("req params in accept friendship", req.params.userId);
+
+  checkFriendship(req.session.user.id, req.params.userId)
+    .then(function(result) {
+      if (result.rows[0].status == 1) {
+        console.log("result in aFR fr-check", result);
+        acceptFriendship(result.rows[0].sender_id, resulzt.rows[0].receiver_id)
+        .then(function(results) {
+          console.log("rresult in aFR accepting", results);
+          res.json({
+            success: true,
+            status: results.rows[0].status,
+            receiver_id: results.rows[0].receiver_id,
+            sender_id: results.rows[0].sender_id,
+            friendshipId: results.rows[0].id,
+            timestamp: results.rows[0].created_at,
+            receivedRequest: req.session.user == result.rows[0].receiver_id
+
+          });
+        })
+
+      } else {
+        console.log("No fr pending!");
+      }
+    })
+    .catch(e => {
+      console.log(e);
+    });
+});
+
+app.get("/logout", (req, res) => {
+  console.log("logout route");
+  req.session.user = null;
+  res.redirect("/welcome");
 });
 
 app.get("*", function(req, res) {

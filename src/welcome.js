@@ -16,7 +16,7 @@ export function Welcome(props) {
 
 
         <HashRouter>
-          <div className="forms" style={formStyle}>
+          <div className="forms">
             <Route exact path="/" component={Register} />
             <Route path="/login" component={Login} />
           </div>

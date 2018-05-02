@@ -1,10 +1,10 @@
 import React from "react";
-import {Uploader} from "./uploader.js";
-import {Bio} from "./bio.js";
-import {Profile} from "./profile.js";
+import { Uploader } from "./uploader.js";
+import { Bio } from "./bio.js";
+import { Profile } from "./profile.js";
 import axios from "../axios";
-import {Comment} from "./comment.js";
-
+import { Comment } from "./comment.js";
+import { Link } from "react-router-dom";
 
 export class Userprofile extends React.Component {
   constructor(props) {
@@ -22,11 +22,9 @@ export class Userprofile extends React.Component {
   }
 
   lineBreaks(e) {
-
     if (e.keyCode == 13) {
-     bioText.textContent = e.target.value;
-     
-   }
+      bioText.textContent = e.target.value;
+    }
   }
 
   toggleBio() {
@@ -41,7 +39,8 @@ export class Userprofile extends React.Component {
   }
 
   changeBio() {
-    axios.post("/bio", {bio: this.props.bio})
+    axios
+      .post("/bio", { bio: this.props.bio })
       .then(resp => {
         if (resp.data.success) {
           this.setState({ bio: resp.data.bio });
@@ -55,28 +54,28 @@ export class Userprofile extends React.Component {
 
   comment() {
     console.log("comment sending fn firing");
-    axios.post("/comment", {
+    axios
+      .post("/comment", {
         comment: this.props.wallData.comment,
         username: this.props.wallData.username
       })
       .then(resp => {
         if (resp.data.success) {
           console.log("Response Data:", resp);
-          this.setState({wallData: resp.data.wallData});
+          this.setState({ wallData: resp.data.wallData });
           this.setState({ commentBoxVisible: false });
         }
       })
       .catch(e => {
         console.log(e);
-      })
-    }
-
+      });
+  }
 
   render() {
     return (
       <div className="userProf">
         <div className="profileBox">
-          <img id="profPicBig" src={this.props.profilePic}/>
+          <img id="profPicBig" src={this.props.profilePic} />
         </div>
         <div className="bioBox">
           <div className="bioContent">
@@ -92,9 +91,7 @@ export class Userprofile extends React.Component {
           />
         </div>
         <div className="wall">
-          <div className="wallPosts">
-          Share your thoughts
-          </div>
+          <div className="wallPosts">Share your thoughts</div>
           <div className="CommentSection">
             <Comment
               setComment={this.props.setComment}
@@ -103,7 +100,13 @@ export class Userprofile extends React.Component {
               wallData={this.state.wallData}
               commentBoxVisible={this.state.commentBoxVisible}
               toggleComment={this.toggleComment}
-              />
+            />
+          </div>
+          <div>
+            <Link to="/user/4"> User4 </Link>
+            <Link to="/user/3"> User3 </Link>
+            <Link to="/user/2"> User2 </Link>
+            <Link to="/user/1"> User1 </Link>
           </div>
         </div>
       </div>
