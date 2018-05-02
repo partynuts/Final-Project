@@ -72,10 +72,16 @@ export class Userprofile extends React.Component {
   }
 
   render() {
+    let pic = this.props.profilePic;
+    if (!pic) {
+      pic = '../defaultAvatar2.png'
+    } else {
+      pic = this.props.profilePic;
+    }
     return (
       <div className="userProf">
         <div className="profileBox">
-          <img id="profPicBig" src={this.props.profilePic} />
+          <img id="profPicBig" src={pic} />
         </div>
         <div className="bioBox">
           <div className="bioContent">
@@ -102,11 +108,15 @@ export class Userprofile extends React.Component {
               toggleComment={this.toggleComment}
             />
           </div>
-          <div>
-            <Link to="/user/4"> User4 </Link>
-            <Link to="/user/3"> User3 </Link>
-            <Link to="/user/2"> User2 </Link>
-            <Link to="/user/1"> User1 </Link>
+          <div className="friends">
+            Friends
+            <span className="list"><Link to="/user/3"> User3 </Link></span>
+            <span className="list"><Link to="/user/2"> User2 </Link></span>
+            <span className="list"><Link to="/user/1"> User1 </Link></span>
+            <span className="list"><Link to="/user/4"> User4 </Link></span>
+            <span className="list"><Link to="/user/5"> User5 </Link></span>
+            <span className="list"><Link to="/user/6"> User6 </Link></span>
+            <span className="list"><Link to="/user/7"> User7 </Link></span>
           </div>
         </div>
       </div>

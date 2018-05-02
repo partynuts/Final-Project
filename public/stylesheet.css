@@ -83,7 +83,7 @@ h3 {
   input[type=text], input[type=password], input[type=email] {
     width: 90%;
     border: 2px solid gray;
-    background: white;
+    background: transparent;
     position: relative;
     top: 0;
     left: 0;
@@ -94,14 +94,17 @@ h3 {
   }
 
   input:valid {
-    background: transparent;
+    background: white;
   }
 
-  input:valid + label {
+  input + label {
+    /* position: absolute; */
+    color: #999;
+    /* padding: 7px 6px; */
+    font-size: 70%;
+
     position: absolute;
     color: #999;
-    padding: 7px 6px;
-    font-size: 70%;
   }
 
   input:focus + label {
@@ -110,14 +113,16 @@ h3 {
     padding: 1px 6px;
     z-index: 2;
     text-transform: uppercase;
+    bottom: 65%;
+
   }
 
   label {
     transition:
-    color 0.2s,
-    bottom 0.2s,
-    right 0.2s,
-    left 0.2s;
+      color 0.2s
+      bottom 0.2s,
+      right 0.2s,
+      left 0.2s;
     position: absolute;
     color: #999;
     padding: 7px 6px;
@@ -134,13 +139,14 @@ h3 {
      font-family: arial;
    }
 
-   input:focus {
-     padding: 23px 6px 12px 6px;
+   input:focus::placeholder {
+
+     color: transparent;
    }
 
-   input:focus + label {
-     bottom: 65%;
-  }
+input:focus {
+   padding: 23px 6px 12px 6px;
+}
 
 
 /* input {
@@ -199,7 +205,7 @@ h3 {
   /* display: inline-block; */
   font-family: arial;
   color: teal;
-  font-size: 15px;
+  font-size: 16px;
   /* text-align: right; */
   font-weight: bolder;
 }
@@ -256,20 +262,32 @@ h3 {
   justify-content: center;
   flex-wrap: wrap;
   left: 24vw;
-  width: 50%;
-  height: 50%;
+  width: 60%;
+  height: 70%;
   background-color: rgba(255, 255, 255, 0.9);
 }
 
 .uploadBox{
   width: 20vw;
-  height: 30vh;
+    height: 50vh;
+    margin-top: 10%;
+}
 
+.closeBtn {
+  padding: 10px 10px;
+    font-weight: bold;
+    height: 20px;
+    width: 30px;
+}
+
+.closeBtn:hover {
+  cursor: pointer;
 }
 
 #modalImg {
-width: 20vw;
-height: 20vh;
+  max-width: 20vw;
+  height: 40vh;
+  margin: 10px 0;
 }
 
 .userProf {
@@ -291,7 +309,7 @@ height: 20vh;
 .bioBox {
   grid-row: 2;
   margin: 0px 5px;
-  margin-left: 50px;
+  margin-left: 15px;
 }
 
 #profPicBig {
@@ -327,11 +345,12 @@ textarea {
   padding-top: 1vh;
   font-family: arial;
   color: rgb(57, 91, 82);
-  font-size: 15px;
+  font-size: 14px;
   font-weight: bolder;
-  width: 30vw;
+  width: 25vw;
   max-height: 34vh;
   white-space: pre-line;
+  text-align: justify;
 }
 
 .wall {
@@ -358,6 +377,7 @@ textarea {
   color: purple;
   cursor: pointer;
   font-weight: bold;
+  text-decoration: underline;
 }
 
 #comUN {
@@ -365,10 +385,35 @@ textarea {
   font-family: arial;
   color: rgb(57, 91, 82);
   font-size: 15px;
-
 }
 
 input[type='file'] {
  color: transparent;
+}
+
+.friends {
+  float: right;
+  font-weight: bold;
+  font-family: arial;
+  color: teal;
+  font-size: 18px;
+}
+
+.list {
+  display: block;
+}
+
+.friendshipBtn {
+  border-radius: 5px;
+  width: 95%;
+  height: 35px;
+  font-size:15px;
+  font-weight: bolder;
+  background-color: teal;
+}
+
+.friendshipBtn:hover {
+  cursor: pointer;
+  background-color: turquoise;
 }
 /* Get your green-thumbed pals together to trade plants, swap tips and maybe even enjoy a scone or two as the spring gardening season begins. */

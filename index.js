@@ -348,33 +348,33 @@ app.post("/cancelFriendship/:userId", function(req, res) {
     });
 });
 
-app.post("/acceptFriendship", function(rq, res) {
+app.post("/acceptFriendship/:userId", function(req, res) {
   console.log("accept firing");
   console.log("req params in accept friendship", req.params.userId);
 
-  checkFriendship(req.session.user.id, req.params.userId)
-    .then(function(result) {
-      if (result.rows[0].status == 1) {
-        console.log("result in aFR fr-check", result);
-        acceptFriendship(result.rows[0].sender_id, resulzt.rows[0].receiver_id)
+  // checkFriendship(req.session.user.id, req.params.userId)
+  //   .then(function(result) {
+  //     if (result.rows[0].status == 1) {
+  //       console.log("result in aFR fr-check", result);
+        acceptFriendship(req.session.user.id, req.params.userId)
         .then(function(results) {
           console.log("rresult in aFR accepting", results);
           res.json({
             success: true,
             status: results.rows[0].status,
-            receiver_id: results.rows[0].receiver_id,
-            sender_id: results.rows[0].sender_id,
-            friendshipId: results.rows[0].id,
-            timestamp: results.rows[0].created_at,
-            receivedRequest: req.session.user == result.rows[0].receiver_id
+            // receiver_id: results.rows[0].receiver_id,
+            // sender_id: results.rows[0].sender_id,
+            // friendshipId: results.rows[0].id,
+            // timestamp: results.rows[0].created_at,
+            // receivedRequest: req.session.user.id == result.rows[0].receiver_id
 
           });
         })
 
-      } else {
-        console.log("No fr pending!");
-      }
-    })
+      // } else {
+      //   console.log("No fr pending!");
+      // }
+    // })
     .catch(e => {
       console.log(e);
     });

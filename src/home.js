@@ -18,6 +18,7 @@ export class Home extends React.Component {
     this.setBio = this.setBio.bind(this);
     this.setComment = this.setComment.bind(this);
     this.logout = this.logout.bind(this);
+    this.closeUploader = this.closeUploader.bind(this);
     // this.componentDidMount = this.componentDidMount.bind(this); ==> you do NOT bind life cycle functions
   }
   componentDidMount() {
@@ -53,7 +54,13 @@ export class Home extends React.Component {
   }
 
   showUploader() {
+    console.log("modal is closed");
     this.setState({ uploaderIsVisible: !this.state.uploaderIsVisible })
+  }
+
+  closeUploader() {
+    console.log("closing modal");
+    this.setState({ uploaderIsVisible: false })
   }
 
   changeImage() {
@@ -109,7 +116,7 @@ export class Home extends React.Component {
     })
   }
 
-  
+
 
 
   render() {
@@ -127,8 +134,10 @@ export class Home extends React.Component {
               showUploader = {() => this.setState({uploaderIsVisible: true})}
             /> }
 
-        {this.state.uploaderIsVisible && <Uploader {...this.state} changeImage={this.changeImage}
-          setFile={this.setFile}
+        {this.state.uploaderIsVisible && <Uploader {...this.state}
+            changeImage={this.changeImage}
+            closeUploader = {this.closeUploader}
+            setFile={this.setFile}
            /> }
 
 

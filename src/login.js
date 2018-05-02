@@ -42,11 +42,11 @@ export class Login extends React.Component {
         <div className="form">
          <div className="inputs">
           <div>
-            <input name="email" type="email"  onChange={this.handleChange} />
+            <input name="email" type="email" placeholder="E-Mail"  onChange={this.handleChange} />
             <label>E-Mail</label>
           </div>
           <div>
-            <input name="pw"  type="password" onChange={this.handleChange} />
+            <input name="pw"  type="password" placeholder="Password" onChange={this.handleChange} />
             <label>Password</label>
           </div>
           <button className="submitBtn" onClick={this.submit}>Log In</button>

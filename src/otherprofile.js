@@ -54,6 +54,7 @@ export class OtherProfile extends React.Component {
           if (response.data.id == response.data.self) {
             this.props.history.push("/");
           } else if (response.data.success) {
+
             console.log("response data in get otherprofile", response.data);
             this.setState({
               first: response.data.first,
