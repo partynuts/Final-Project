@@ -38,3 +38,14 @@ axios.get("/comment")
         console.log(e);
       });
   });
+
+
+  function pullOtherUsers(user_id) {
+    `Select users.id, first, last `
+  }
+
+  let noFriendStatus = this.props.otherUsers.map(otherUser => {
+    return (
+
+    )
+  })

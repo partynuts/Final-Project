@@ -1,8 +1,10 @@
 import React from "react";
 import {Uploader} from "./uploader.js";
 import {Bio} from "./bio.js";
-import {Userprofile} from "./userprofile.js"
-import {Welcome} from "./welcome"
+import {Userprofile} from "./userprofile.js";
+import {Welcome} from "./welcome";
+import { Link } from "react-router-dom";
+
 
 export function Profile(props) {
 
@@ -18,10 +20,11 @@ console.log(props);
     <div>
       <div>
         <span id="welcome">Welcome {props.first}!</span>
-        <span id="logout" onClick={props.logout}>Logout</span>
+        <p className="headerMenuLinks" onClick={props.logout}>Logout</p>
+        <p> <a className="headerMenuLinks" href="/welcome">  My Profile </a> </p>
         <img id="profPic" src={pic} onClick={props.showUploader} alt="click to change profile picture" />
       </div>
-
+      
     </div>
   )
 

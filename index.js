@@ -15,7 +15,9 @@ const {
   changeFriendshipStatus,
   checkFriendship,
   cancelFriendshipRequest,
-  acceptFriendship
+  acceptFriendship,
+  pullFriendsList,
+  pullOtherUsers
 } = require("./db.js");
 const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
@@ -351,34 +353,40 @@ app.post("/cancelFriendship/:userId", function(req, res) {
 app.post("/acceptFriendship/:userId", function(req, res) {
   console.log("accept firing");
   console.log("req params in accept friendship", req.params.userId);
-
-  // checkFriendship(req.session.user.id, req.params.userId)
-  //   .then(function(result) {
-  //     if (result.rows[0].status == 1) {
-  //       console.log("result in aFR fr-check", result);
         acceptFriendship(req.session.user.id, req.params.userId)
         .then(function(results) {
-          console.log("rresult in aFR accepting", results);
+          // console.log("rresult in aFR accepting", results);
           res.json({
             success: true,
             status: results.rows[0].status,
-            // receiver_id: results.rows[0].receiver_id,
-            // sender_id: results.rows[0].sender_id,
-            // friendshipId: results.rows[0].id,
-            // timestamp: results.rows[0].created_at,
-            // receivedRequest: req.session.user.id == result.rows[0].receiver_id
 
           });
         })
-
-      // } else {
-      //   console.log("No fr pending!");
-      // }
-    // })
-    .catch(e => {
+        .catch(e => {
       console.log(e);
     });
 });
+
+app.get("/friends", function(req, res) {
+  console.log("in friends get route");
+  pullFriendsList(req.session.user.id).then(function(results) {
+    console.log("resukts", results);
+    res.json({
+      friends: results.rows
+    })
+  })
+})
+
+app.get("/otherUsers", function(req, res) {
+  console.log("in other Users get route");
+pullOtherUsers(req.session.user.id).then(response => {
+  console.log("IN OTHERS RESPONSE",response.rows);
+  return res.json({
+    success: true,
+    others: response.rows
+    })
+  })
+})
 
 app.get("/logout", (req, res) => {
   console.log("logout route");

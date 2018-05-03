@@ -142,3 +142,29 @@ function acceptFriendship(sender_id, receiver_id) {
 }
 
 exports.acceptFriendship = acceptFriendship;
+
+function pullFriendsList(user_id) {
+  return db.query(
+    `SELECT users.id, first, last, profilePic, status
+    FROM friendships
+    JOIN users
+    ON (status = 1 AND receiver_id = $1 AND sender_id = users.id)
+    OR (status = 2 AND receiver_id = $1 AND sender_id = users.id)
+    OR (status = 2 AND sender_id = $1 AND receiver_id = users.id)`,
+    [user_id]
+  )
+}
+
+exports.pullFriendsList = pullFriendsList;
+
+
+function pullOtherUsers(user_id) {
+  return db.query(`Select u.id, u.first, u.last, u.profilePic, f.status, f.receiver_id, f.sender_id
+  FROM users u
+  JOIN friendships f
+  ON (receiver_id != $1 AND sender_id != $1 )
+  OR (receiver_id != $1 AND sender_id != $1)`
+  ,[user_id])
+}
+
+exports.pullOtherUsers = pullOtherUsers;

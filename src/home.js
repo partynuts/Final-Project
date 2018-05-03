@@ -5,7 +5,10 @@ import { Profile } from "./profile";
 import { Uploader } from "./uploader";
 import {BrowserRouter, Route, Link} from "react-router-dom";
 import { Userprofile} from "./userprofile.js";
-import {OtherProfile} from "./otherprofile.js"
+import {OtherProfile} from "./otherprofile.js";
+import { connect } from 'react-redux';
+import Friends from './friends';
+
 
 
 export class Home extends React.Component {
@@ -146,7 +149,8 @@ export class Home extends React.Component {
 
         <BrowserRouter>
           <div>
-          {this.state.userData &&  <div>
+          {this.state.userData &&
+          <div>
             <Route
               exact path="/"
               render={() => {
@@ -167,6 +171,10 @@ export class Home extends React.Component {
             />
           </div>
           }
+          <Route
+            exact path="/friendslist"
+            component={Friends}
+            />
 
           <Route
             exact path="/user/:userId"

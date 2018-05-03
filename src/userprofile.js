@@ -109,14 +109,8 @@ export class Userprofile extends React.Component {
             />
           </div>
           <div className="friends">
-            Friends
-            <span className="list"><Link to="/user/3"> User3 </Link></span>
-            <span className="list"><Link to="/user/2"> User2 </Link></span>
-            <span className="list"><Link to="/user/1"> User1 </Link></span>
-            <span className="list"><Link to="/user/4"> User4 </Link></span>
-            <span className="list"><Link to="/user/5"> User5 </Link></span>
-            <span className="list"><Link to="/user/6"> User6 </Link></span>
-            <span className="list"><Link to="/user/7"> User7 </Link></span>
+            <span className="friendList"> <Link to="/friendslist">  Friends </Link> </span>
+            
           </div>
         </div>
       </div>

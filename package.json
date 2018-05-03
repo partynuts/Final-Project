@@ -39,6 +39,7 @@
         "react-router": "^4.2.0",
         "react-router-dom": "^4.2.2",
         "redux": "^3.7.1",
+        "redux-devtools": "^3.4.1",
         "redux-devtools-extension": "^2.13.2",
         "redux-promise": "^0.5.3",
         "socket-cookie-session": "github:spicedacademy/socket-cookie-session",
