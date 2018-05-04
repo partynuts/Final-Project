@@ -152,19 +152,28 @@ function pullFriendsList(user_id) {
     OR (status = 2 AND receiver_id = $1 AND sender_id = users.id)
     OR (status = 2 AND sender_id = $1 AND receiver_id = users.id)`,
     [user_id]
-  )
+  );
 }
 
 exports.pullFriendsList = pullFriendsList;
 
-
 function pullOtherUsers(user_id) {
-  return db.query(`Select u.id, u.first, u.last, u.profilePic, f.status, f.receiver_id, f.sender_id
+  return db.query(
+    `Select u.id, u.first, u.last, u.profilePic, f.status, f.receiver_id, f.sender_id
   FROM users u
   JOIN friendships f
-  ON (receiver_id != $1 AND sender_id != $1 )
-  OR (receiver_id != $1 AND sender_id != $1)`
-  ,[user_id])
+  ON (receiver_id=$1 AND status = null)`,
+    [user_id]
+  );
 }
 
 exports.pullOtherUsers = pullOtherUsers;
+
+function getUsersByIds(arrayOfIds) {
+  const query = `SELECT *
+    FROM users
+    WHERE id = ANY($1)`;
+  return db.query(query, [arrayOfIds]);
+}
+
+exports.getUsersByIds = getUsersByIds;

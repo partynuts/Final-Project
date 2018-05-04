@@ -3,7 +3,7 @@ import { Uploader } from "./uploader.js";
 import { Bio } from "./bio.js";
 import { Profile } from "./profile.js";
 import axios from "../axios";
-import { Comment } from "./comment.js";
+// import { Comment } from "./comment.js";
 import { Link } from "react-router-dom";
 
 export class Userprofile extends React.Component {
@@ -17,7 +17,7 @@ export class Userprofile extends React.Component {
     this.toggleBio = this.toggleBio.bind(this);
     this.changeBio = this.changeBio.bind(this);
     this.lineBreaks = this.lineBreaks.bind(this);
-    this.comment = this.comment.bind(this);
+    // this.sendComment = this.sendComment.bind(this);
     this.toggleComment = this.toggleComment.bind(this);
   }
 
@@ -52,24 +52,6 @@ export class Userprofile extends React.Component {
       });
   }
 
-  comment() {
-    console.log("comment sending fn firing");
-    axios
-      .post("/comment", {
-        comment: this.props.wallData.comment,
-        username: this.props.wallData.username
-      })
-      .then(resp => {
-        if (resp.data.success) {
-          console.log("Response Data:", resp);
-          this.setState({ wallData: resp.data.wallData });
-          this.setState({ commentBoxVisible: false });
-        }
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  }
 
   render() {
     let pic = this.props.profilePic;
@@ -99,18 +81,11 @@ export class Userprofile extends React.Component {
         <div className="wall">
           <div className="wallPosts">Share your thoughts</div>
           <div className="CommentSection">
-            <Comment
-              setComment={this.props.setComment}
-              lineBreaks={this.lineBreaks}
-              comment={this.props.comment}
-              wallData={this.state.wallData}
-              commentBoxVisible={this.state.commentBoxVisible}
-              toggleComment={this.toggleComment}
-            />
+
           </div>
           <div className="friends">
             <span className="friendList"> <Link to="/friendslist">  Friends </Link> </span>
-            
+
           </div>
         </div>
       </div>

@@ -26,7 +26,7 @@ class Friends extends React.Component {
 
     return (
            <div key={pendingRequest.id} className="pendingReq">
-           <img className="profPicFriends" src={pendingRequest.profilepic}/> {pendingRequest.profilepic} {pendingRequest.first} {pendingRequest.last}
+           <img className="profPicFriends" src={pendingRequest.profilepic}/> {pendingRequest.first} {pendingRequest.last}
 
            <button className="friendsBtn" onClick={() => this.props.dispatch(acceptFriendRequest(pendingRequest.id))}>Accept friend request</button>
            </div>
@@ -44,10 +44,6 @@ let acceptedList = this.props.acceptedFriends.map(acceptedFriend => {
 })
 
 
-
-
-
-
     return (
       <div className="friendsWrapper">
         <div className="acceptedFriendsContainer">
@@ -59,10 +55,7 @@ let acceptedList = this.props.acceptedFriends.map(acceptedFriend => {
           {pendingReqList}
         </div>
         <div>
-          <h1>HALLO HIER SIND WIR!</h1>
-      
-
-
+        
         </div>
       </div>
     )

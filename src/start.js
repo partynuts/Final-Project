@@ -14,6 +14,10 @@ import reducer from './reducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import {Provider} from 'react-redux';
 
+import {init as initSocket} from './socket';
+
+
+initSocket(store);
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(reduxPromise)));
 
@@ -27,7 +31,6 @@ if (location.pathname == '/welcome') {
         <Home />
     </Provider>
 );
-
 
 }
 

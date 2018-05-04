@@ -3,12 +3,15 @@ const app = express();
 const compression = require("compression");
 const bodyParser = require("body-parser");
 const { hashPassword, checkPassword } = require("./bcrypt");
+const server = require("http").Server(app);
+const io = require("socket.io")(server, { origins: "localhost:8080" });
+
 const {
   setRegistration,
   setLogin,
   insertImageData,
   insertBio,
-  insertComment,
+  insertComments,
   displayComments,
   getProfileInfo,
   makeFriendRequest,
@@ -17,7 +20,8 @@ const {
   cancelFriendshipRequest,
   acceptFriendship,
   pullFriendsList,
-  pullOtherUsers
+  pullOtherUsers,
+  getUsersByIds
 } = require("./db.js");
 const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
@@ -50,12 +54,17 @@ var uploader = multer({
 
 app.use(compression());
 app.use(express.static("./public"));
-app.use(
-  cookieSession({
-    secret: `Man's not hot`,
-    maxAge: 1000 * 60 * 60 * 24 * 14 //expiration of the session (like on banking pages)
-  })
-);
+
+const cookieSessionMiddleware = cookieSession({
+  secret: `Man's not hot`,
+  maxAge: 1000 * 60 * 60 * 24 * 14 //expiration of the session (like on banking pages)
+});
+
+app.use(cookieSessionMiddleware);
+
+io.use(function(socket, next) {
+  cookieSessionMiddleware(socket.request, socket.request.res, next);
+});
 
 app.use(bodyParser.json());
 
@@ -77,17 +86,43 @@ if (process.env.NODE_ENV != "production") {
   app.use("/bundle.js", (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
 
-// function requireLogin(req, res, next) {
-//   if (!req.session.user) {
-//     res.sendStatus(403);
-//   } else {
-//     next();
-//   }
-// }
-//
-// app.get('/user', requireLogin, (req, res) => {
-//   db.getUserInfo(req.session.user)
-// })
+function requireLogin(req, res, next) {
+  if (!req.session.user) {
+    res.sendStatus(403);
+  } else {
+    next();
+  }
+}
+
+app.get("/user", requireLogin, (req, res) => {
+  db.getUserInfo(req.session.user);
+});
+
+let onlineUsers = [];
+
+io.on("connection", function(socket) {
+  const session = socket.request.session;
+  console.log("socket session user", session);
+  socket.on("disconnect", function() {
+    console.log("disc session user", session);
+  });
+  // if (!session.user) {
+  //   return socket.disconnect(true);
+  // }
+  socket.on("NewLogin", function(data) {
+    console.log("NEW USER LOGGED IN");
+    onlineUsers.push(session.user.id);
+    console.log(onlineUsers);
+  });
+  // onlineUsers[socket.id] = session.user.id;
+  // onlineUsers.push({
+  //   socketId: socket.id,
+  //   userId: session.user.id
+  // });
+  socket.on("disconnect", function() {
+    console.log("tschüssikovsky!");
+  });
+});
 
 app.get("/userInfo", function(req, res) {
   setLogin(req.session.user.email)
@@ -98,10 +133,11 @@ app.get("/userInfo", function(req, res) {
           //     let date = new Date (item.timeSent);
           //       item.timeSent = date.toLocaleDateString();
           // });
+          // result.rows[0].pw = null;
+          req.session.userStuff = result.rows[0];
           res.json({
             success: true,
             userData: result.rows[0],
-
             wallData: results.rows
           });
         })
@@ -131,6 +167,13 @@ app.get("/get-user/:userId", function(req, res) {
   }
   getProfileInfo(req.params.userId)
     .then(results => {
+      req.session.user = {
+        first: results.rows[0].first,
+        last: results.rows[0].last,
+        profilePic: results.rows[0].profilepic,
+        bio: results.rows[0].bio,
+        id: results.rows[0].id
+      };
       res.json({
         success: true,
         first: results.rows[0].first,
@@ -263,8 +306,8 @@ app.post("/bio", function(req, res) {
 });
 
 app.post("/comment", function(req, res) {
-  if (req.body.comment && req.body.userName) {
-    insertComment(req.body.comment, req.body.userName, req.session.user.id)
+  if (req.body.comment && req.body.username) {
+    insertComments(req.body.comment, req.body.username, req.session.user.id)
       .then(function(result) {
         res.json({
           success: true,
@@ -277,7 +320,7 @@ app.post("/comment", function(req, res) {
         console.log(e);
       });
   } else {
-    console.log("comment save FAILED!!");
+    console.log("comment save FAILED!!", req.body);
     res.json({
       success: false
     });
@@ -288,17 +331,16 @@ app.get("/friendship/:userId", function(req, res) {
   console.log("req params in friendship", req.params.userId);
   checkFriendship(req.session.user.id, req.params.userId)
     .then(function(result) {
-      console.log("result FR",result);
+      console.log("result FR", result);
       if (result.rows.length == 0) {
         res.json({
           success: true,
-          status: 0,
-
+          status: 0
         });
       } else {
         res.json({
           success: true,
-          status:result.rows[0].status,
+          status: result.rows[0].status,
           receiver_id: result.rows[0].receiver_id,
           sender_id: result.rows[0].sender_id,
           friendshipId: result.rows[0].id,
@@ -341,8 +383,7 @@ app.post("/cancelFriendship/:userId", function(req, res) {
   cancelFriendshipRequest(req.session.user.id, req.params.userId)
     .then(function(result) {
       res.json({
-        success: true,
-
+        success: true
       });
     })
     .catch(e => {
@@ -353,16 +394,15 @@ app.post("/cancelFriendship/:userId", function(req, res) {
 app.post("/acceptFriendship/:userId", function(req, res) {
   console.log("accept firing");
   console.log("req params in accept friendship", req.params.userId);
-        acceptFriendship(req.session.user.id, req.params.userId)
-        .then(function(results) {
-          // console.log("rresult in aFR accepting", results);
-          res.json({
-            success: true,
-            status: results.rows[0].status,
-
-          });
-        })
-        .catch(e => {
+  acceptFriendship(req.session.user.id, req.params.userId)
+    .then(function(results) {
+      // console.log("rresult in aFR accepting", results);
+      res.json({
+        success: true,
+        status: results.rows[0].status
+      });
+    })
+    .catch(e => {
       console.log(e);
     });
 });
@@ -373,20 +413,25 @@ app.get("/friends", function(req, res) {
     console.log("resukts", results);
     res.json({
       friends: results.rows
-    })
-  })
-})
+    });
+  });
+});
 
 app.get("/otherUsers", function(req, res) {
   console.log("in other Users get route");
-pullOtherUsers(req.session.user.id).then(response => {
-  console.log("IN OTHERS RESPONSE",response.rows);
-  return res.json({
-    success: true,
-    others: response.rows
-    })
-  })
-})
+  pullOtherUsers(req.session.user.id).then(response => {
+    console.log("IN OTHERS RESPONSE", response.rows);
+    return res.json({
+      success: true,
+      others: response.rows
+    });
+  });
+});
+
+// app.get("/", function(req, res) {
+//   // just a normal route
+//   res.sendStatus(200);
+// });
 
 app.get("/logout", (req, res) => {
   console.log("logout route");
@@ -402,6 +447,6 @@ app.get("*", function(req, res) {
   }
 });
 
-app.listen(8080, function() {
+server.listen(8080, function() {
   console.log("I'm listening.");
 });
