@@ -1,6 +1,5 @@
 import * as io from "socket.io-client";
-
-// import { onlineUser, userJoined, userLeft } from "./actions";
+import { onlineUsers, userLeft, userJoined } from "./action";
 
 let socket;
 
@@ -14,9 +13,11 @@ export function init(store) {
 
     socket.on("userJoined", data => {
       store.dispatch(userJoined(data));
+      console.log("User just joined");
     });
 
     socket.on("userLeft", data => {
+      console.log("User just left");
       store.dispatch(userLeft(data));
     });
   }

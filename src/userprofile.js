@@ -3,11 +3,13 @@ import { Uploader } from "./uploader.js";
 import { Bio } from "./bio.js";
 import { Profile } from "./profile.js";
 import axios from "../axios";
-// import { Comment } from "./comment.js";
+import { Comment } from "./comment.js";
 import { Link } from "react-router-dom";
+import Onliners from "./onliners";
 
 export class Userprofile extends React.Component {
   constructor(props) {
+    console.log("props in userprofile", props);
     super(props);
 
     this.state = {
@@ -18,7 +20,31 @@ export class Userprofile extends React.Component {
     this.changeBio = this.changeBio.bind(this);
     this.lineBreaks = this.lineBreaks.bind(this);
     // this.sendComment = this.sendComment.bind(this);
-    this.toggleComment = this.toggleComment.bind(this);
+  }
+
+  componentDidMount() {
+    console.log("mounted in comments");
+    axios
+      .get("/userInfo")
+      .then(response => {
+        //wenn man eine arrow fn  benutzt, wird der "Inhalt" des this von der vorherigen funktion übernommen.
+        if (response.data.success) {
+          console.log("response data", response.data);
+          this.setState(
+            {
+              wallData: response.data.wallData
+            },
+            function() {
+              console.log(this.state);
+            }
+          );
+        } else {
+          console.log("Errooooooor");
+        }
+      })
+      .catch(e => {
+        console.log(e);
+      });
   }
 
   lineBreaks(e) {
@@ -31,12 +57,12 @@ export class Userprofile extends React.Component {
     this.setState({ bioBoxVisible: !this.state.bioBoxVisible });
   }
 
-  toggleComment() {
-    console.log("toggle Comment Box. this.state:", this.state);
-    console.log("toggle Comment Box. this.props:", this.props);
-
-    this.setState({ commentBoxVisible: !this.state.commentBoxVisible });
-  }
+  // toggleComment() {
+  //   console.log("toggle Comment Box. this.state:", this.state);
+  //   console.log("toggle Comment Box. this.props:", this.props);
+  //
+  //   this.setState({ commentBoxVisible: !this.state.commentBoxVisible });
+  // }
 
   changeBio() {
     axios
@@ -52,18 +78,27 @@ export class Userprofile extends React.Component {
       });
   }
 
-
   render() {
+    if (!this.props.wallData) {
+      return <div className="loader">Loading...</div>;
+    }
+
     let pic = this.props.profilePic;
     if (!pic) {
-      pic = '../defaultAvatar2.png'
+      pic = "../defaultAvatar2.png";
     } else {
       pic = this.props.profilePic;
     }
+
     return (
       <div className="userProf">
         <div className="profileBox">
-          <img id="profPicBig" src={pic} />
+          <img
+            id="profPicBig"
+            src={pic}
+            onClick={this.props.showUploader}
+            title="Update profile picture"
+          />
         </div>
         <div className="bioBox">
           <div className="bioContent">
@@ -81,11 +116,16 @@ export class Userprofile extends React.Component {
         <div className="wall">
           <div className="wallPosts">Share your thoughts</div>
           <div className="CommentSection">
-
+            <Comment
+              lineBreaks={this.lineBreaks}
+              comment={this.props.wallData.comment}
+              username={this.props.wallData.username}
+              wallData={this.props.wallData}
+            />
           </div>
-          <div className="friends">
-            <span className="friendList"> <Link to="/friendslist">  Friends </Link> </span>
 
+          <div className="onlineUserBox">
+            <Onliners />
           </div>
         </div>
       </div>

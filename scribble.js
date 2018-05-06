@@ -49,3 +49,8 @@ axios.get("/comment")
 
     )
   })
+
+  <span className="contacts">
+    {" "}
+    <Link to="/onlineUsers"> Contacts</Link>{" "}
+  </span>

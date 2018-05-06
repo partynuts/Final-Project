@@ -8,10 +8,8 @@ import { Userprofile } from "./userprofile.js";
 import { OtherProfile } from "./otherprofile.js";
 import { connect } from "react-redux";
 import Friends from "./friends";
-
-////SOCKET////
-import * as io from "socket.io-client";
-const socket = io.connect();
+import Onliners from "./onliners";
+import { Menu } from "./menu";
 
 export class Home extends React.Component {
   constructor(props) {
@@ -23,6 +21,7 @@ export class Home extends React.Component {
     this.setBio = this.setBio.bind(this);
     this.logout = this.logout.bind(this);
     this.closeUploader = this.closeUploader.bind(this);
+    this.toggleMenu = this.toggleMenu.bind(this);
     // this.componentDidMount = this.componentDidMount.bind(this); ==> you do NOT bind life cycle functions
   }
   componentDidMount() {
@@ -33,9 +32,6 @@ export class Home extends React.Component {
       .then(response => {
         //wenn man eine arrow fn  benutzt, wird der "Inhalt" des this von der vorherigen funktion übernommen.
         if (response.data.success) {
-          socket.emit("NewLogin", {
-            NewLogin: response.data.userData.id
-          });
           console.log("response data", response.data);
           this.setState(
             {
@@ -60,6 +56,11 @@ export class Home extends React.Component {
       console.log("logging out");
       location.pathname = "/logout";
     });
+  }
+
+  toggleMenu() {
+    console.log("menu opening?");
+    this.setState({ menuVisible: !this.state.menuVisible });
   }
 
   showUploader() {
@@ -129,9 +130,10 @@ export class Home extends React.Component {
           <div className="headRight">
             {this.state.userData && (
               <Profile
-                profilePic={this.state.userData.profilepic}
+                toggleMenu={this.toggleMenu}
                 first={this.state.userData.first}
                 logout={this.logout}
+                profilePic={this.state.userData.profilepic}
                 showUploader={() => this.setState({ uploaderIsVisible: true })}
               />
             )}
@@ -142,6 +144,13 @@ export class Home extends React.Component {
                 changeImage={this.changeImage}
                 closeUploader={this.closeUploader}
                 setFile={this.setFile}
+              />
+            )}
+
+            {this.state.menuVisible && (
+              <Menu
+                logout={this.logout}
+                toggleMenu={() => this.setState({ menuVisible: true })}
               />
             )}
           </div>
@@ -164,14 +173,18 @@ export class Home extends React.Component {
                         bio={this.state.userData.bio}
                         setBio={this.setBio}
                         wallData={this.state.wallData}
+                        showUploader={() =>
+                          this.setState({ uploaderIsVisible: true })
+                        }
                       />
                     );
                   }}
                 />
               </div>
             )}
-            <Route exact path="/friendslist" component={Friends} />
 
+            <Route exact path="/friendslist" component={Friends} />
+            <Route exact path="/onlineUsers" component={Onliners} />
             <Route exact path="/user/:userId" component={OtherProfile} />
           </div>
         </BrowserRouter>

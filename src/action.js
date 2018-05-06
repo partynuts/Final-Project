@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "../axios";
+import { init } from "./socket";
 
 function getFriendsAndRequests() {
   return axios.get("/friends").then(function(response) {
@@ -48,21 +49,32 @@ function getOtherUsers() {
 
 exports.getOtherUsers = getOtherUsers;
 
-function getOnlineUsers() {
-  return axios.get("/");
+function onlineUsers(data) {
   console.log("these peeps are on");
+  return {
+    type: "GET_ONLINE_USERS",
+    onliners: data.online
+  };
 }
 
-exports.getOnlineUsers = getOnlineUsers;
+exports.onlineUsers = onlineUsers;
 
-function getJoinedUsers() {
+function userJoined(data) {
   console.log("these peeps just joined");
+  return {
+    type: "JOINED_USER",
+    newUser: data.newUser
+  };
 }
 
-exports.getJoinedUsers = getJoinedUsers;
+exports.userJoined = userJoined;
 
-function getLeftUsers() {
-  console.log("these peeps are off");
+function userLeft(data) {
+  console.log("these peeps are off", data);
+  return {
+    type: "LEFT_USER",
+    userId: data.userId
+  };
 }
 
-exports.getLeftUsers = getLeftUsers;
+exports.userLeft = userLeft;

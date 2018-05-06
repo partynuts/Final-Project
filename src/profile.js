@@ -1,31 +1,48 @@
 import React from "react";
-import {Uploader} from "./uploader.js";
-import {Bio} from "./bio.js";
-import {Userprofile} from "./userprofile.js";
-import {Welcome} from "./welcome";
+import { Uploader } from "./uploader.js";
+import { Bio } from "./bio.js";
+import { Userprofile } from "./userprofile.js";
+import { Welcome } from "./welcome";
 import { Link } from "react-router-dom";
+import { Menu } from "./menu";
 
-
-export function Profile(props) {
-
-  let pic = props.profilePic;
-  if (!pic) {
-    pic = '../defaultAvatar2.png'
-  } else {
-    pic = props.profilePic;
+export class Profile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      menuVisible: false
+    };
   }
 
-console.log(props);
-  return (
-    <div>
-      <div>
-        <span id="welcome">Welcome {props.first}!</span>
-        <p className="headerMenuLinks" onClick={props.logout}>Logout</p>
-        <p> <a className="headerMenuLinks" href="/welcome">  My Profile </a> </p>
-        <img id="profPic" src={pic} onClick={props.showUploader} alt="click to change profile picture" />
-      </div>
-      
-    </div>
-  )
+  render() {
+    let pic = this.props.profilePic;
+    if (!pic) {
+      pic = "../defaultAvatar2.png";
+    } else {
+      pic = this.props.profilePic;
+    }
 
+    console.log(this.props);
+    return (
+      <div>
+        <div className="welcomeDiv" id="welcome">
+          Welcome {this.props.first}!
+        </div>
+        <div className="menuLinksDiv" />
+        <div className="icon">
+          <i
+            className="fa fa-caret-down"
+            aria-hidden="true"
+            onClick={this.props.toggleMenu}
+          />
+        </div>
+        <div className="picDiv">
+          <a href="/welcome">
+            {" "}
+            <img id="profPic" src={pic} />
+          </a>
+        </div>
+      </div>
+    );
+  }
 }

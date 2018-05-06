@@ -4,7 +4,9 @@ const compression = require("compression");
 const bodyParser = require("body-parser");
 const { hashPassword, checkPassword } = require("./bcrypt");
 const server = require("http").Server(app);
-const io = require("socket.io")(server, { origins: "localhost:8080" });
+const io = require("socket.io")(server, {
+  origins: "localhost:8080 || 192.168.50.156:8080"
+});
 
 const {
   setRegistration,
@@ -95,32 +97,51 @@ function requireLogin(req, res, next) {
 }
 
 app.get("/user", requireLogin, (req, res) => {
-  db.getUserInfo(req.session.user);
+  db.getProfileInfo(req.session.user);
 });
 
 let onlineUsers = [];
 
 io.on("connection", function(socket) {
   const session = socket.request.session;
-  console.log("socket session user", session);
-  socket.on("disconnect", function() {
-    console.log("disc session user", session);
+  // console.log("socket session user", session);
+
+  // onlineUsers[socket.id] = session.user.id;
+  onlineUsers.push({
+    socketId: socket.id,
+    userId: session.user.id
   });
+  const ids = onlineUsers.map(user => user.userId);
+  getUsersByIds(ids).then(result => {
+    socket.emit("onlineUsers", {
+      online: result.rows
+    });
+  });
+
+  getProfileInfo(session.user.id).then(response => {
+    socket.broadcast.emit("userJoined", {
+      newUser: response.rows[0]
+    });
+  });
+  // console.log(onlineUsers.find(user => socket.id == session.user.id));
+  // if (onlineUsers.find(user => socket.id == session.user.id)) {
+  //   socket.broadcast.emit("userJoined", {
+  //     userData: session.userData
+  //   });
+  // }
+
   // if (!session.user) {
   //   return socket.disconnect(true);
   // }
-  socket.on("NewLogin", function(data) {
-    console.log("NEW USER LOGGED IN");
-    onlineUsers.push(session.user.id);
-    console.log(onlineUsers);
-  });
-  // onlineUsers[socket.id] = session.user.id;
-  // onlineUsers.push({
-  //   socketId: socket.id,
-  //   userId: session.user.id
-  // });
+
   socket.on("disconnect", function() {
-    console.log("tschüssikovsky!");
+    onlineUsers = onlineUsers.filter(user => user.socketId != socket.id);
+    if (!onlineUsers.find(user => user.userId == session.user.id)) {
+      io.sockets.emit("userLeft", {
+        userId: session.user.id
+      });
+    }
+    // console.log("tschüssikovsky!");
   });
 });
 
@@ -174,6 +195,7 @@ app.get("/get-user/:userId", function(req, res) {
         bio: results.rows[0].bio,
         id: results.rows[0].id
       };
+      console.log("prof info other user", results);
       res.json({
         success: true,
         first: results.rows[0].first,

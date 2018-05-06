@@ -1,10 +1,11 @@
-
 body {
   background-size: cover;
   background-color: rgb(238, 238, 238);
+  background: url("palmleave.jpg") no-repeat right fixed;
 }
 
 /* color: 57, 91, 82 */
+
 .headings {
   display: grid;
   grid-template-columns: 50% 50%;
@@ -28,12 +29,12 @@ h1 {
   justify-self: center;
   color: rgb(57, 91, 82);
   font-size: 80px;
-  font-family: 'Cookie', cursive;
+  font-family: "Cookie", cursive;
   margin: 0;
 }
 
 h3 {
-  grid-column:2;
+  grid-column: 2;
   grid-row: 2;
   justify-self: center;
   color: rgb(55, 90, 80);
@@ -49,7 +50,6 @@ h3 {
 }
 
 .formContainer {
-
   height: 98%;
 }
 
@@ -60,88 +60,82 @@ h3 {
   width: 500px;
   height: 80%;
   padding: 40px 10px 0 10px;
-
 }
 
 .inputs {
   flex-wrap: wrap;
-  height:auto;
+  height: auto;
   width: 300px;
 }
 
 .inputs > div {
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 20px;
-  }
-
-
-  input[type=text], input[type=password], input[type=email] {
-    width: 90%;
-    border: 2px solid gray;
-    background: transparent;
-    position: relative;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    padding: 8px 12px;
-    outline: 0;
-    border-radius: 4px;
-  }
-
-  input:valid {
-    background: white;
-  }
-
-  input + label {
-    color: #999;
-    font-size: 70%;
-
-    position: absolute;
-    color: #999;
-  }
-
-  input:focus + label {
-    color: #999;
-    font-size: 70%;
-    padding: 1px 6px;
-    z-index: 2;
-    text-transform: uppercase;
-    bottom: 65%;
-
-  }
-
-  label {
-    transition:
-      color 0.2s
-      bottom 0.2s,
-      right 0.2s,
-      left 0.2s;
-    position: absolute;
-    color: #999;
-    padding: 7px 6px;
-  }
-
-  input[type=text], input[type=password], input[type=email] {
-     padding: 12px 6px 12px 12px;
-   }
-
-   label {
-     bottom: 10%;
-     left: 0;
-     width: 100%;
-     font-family: arial;
-   }
-
-   input:focus::placeholder {
-
-     color: transparent;
-   }
-
-input:focus {
-   padding: 23px 6px 12px 6px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
 }
 
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 90%;
+  border: 2px solid gray;
+  /* background: transparent; */
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  padding: 8px 12px;
+  outline: 0;
+  border-radius: 4px;
+}
+
+input:valid {
+  background: white;
+}
+
+input + label {
+  color: #999;
+  font-size: 70%;
+  position: absolute;
+  color: #999;
+}
+
+input:focus + label {
+  color: #999;
+  font-size: 70%;
+  padding: 1px 6px;
+  z-index: 2;
+  text-transform: uppercase;
+  bottom: 65%;
+}
+
+label {
+  transition: color 0.2s bottom 0.2s, right 0.2s, left 0.2s;
+  position: absolute;
+  color: #999;
+  padding: 7px 6px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  padding: 12px 6px 12px 12px;
+}
+
+label {
+  bottom: 10%;
+  left: 0;
+  width: 100%;
+  font-family: arial;
+}
+
+input:focus::placeholder {
+  color: transparent;
+}
+
+input:focus {
+  padding: 23px 6px 12px 6px;
+}
 
 .redirect {
   font-family: arial;
@@ -150,13 +144,14 @@ input:focus {
   height: auto;
   color: rgb(57, 91, 82);
   text-align: center;
+  font-weight: bold;
 }
 
 .submitBtn {
   border-radius: 5px;
   width: 98%;
   height: 30px;
-  font-size:15px;
+  font-size: 15px;
   font-weight: bolder;
   background-color: teal;
 }
@@ -166,49 +161,111 @@ input:focus {
   background-color: #92644a;
 }
 
+/* .headRight {
+  display: table-cell;
+width: 30%;
+vertical-align: middle;
+} */
+
 .headerProfile {
   display: table;
   width: 100%;
-  border-bottom: solid 5px teal;
+  background-color: rgb(60, 133, 131);
+  border-bottom: solid 2px teal;
 }
 
 .headerProfile > div {
   display: table-cell;
-  width: 50%;
+  width: 30%;
   vertical-align: middle;
 }
 
+.menuLinksDiv {
+  display: inline-table;
+  float: left;
+}
+
+.picDiv {
+  width: 15vh;
+  display: flex;
+  float: right;
+  height: 15vh;
+  margin-right: 5%;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
 .small {
+  max-height: 100px;
+  padding-left: 10px;
   width: auto;
-  max-height: 150px;
 }
 
 #welcome {
-  /* display: inline-block; */
-  font-family: arial;
-  color: teal;
+  display: inline-block;
+  text-align: left;
+  color: rgb(36, 73, 84);
+  /* color: teal; */
   font-size: 34px;
-  font-family: 'Cookie', cursive;
-
-  /* text-align: right; */
+  font-family: "Cookie", cursive;
+  width: 70%;
   font-weight: bolder;
 }
 
-.headerMenuLinks {
-  display: block;
-  text-decoration: underline;
+.icon {
+  width: 20px;
+  /* text-align: center; */
+  display: inline-table;
+  right: 12vw;
+  top: 9vh;
   position: absolute;
-  vertical-align: bottom;
+}
+
+.fa-caret-down:hover {
+  cursor: pointer;
+}
+
+.menuBar {
+  background-color: rgba(238, 238, 238, 0.9);
+  width: 300px;
+  height: 50px;
+  z-index: 2;
+  transition: all 0.5s ease-in-out 0.5s;
+  position: absolute;
+  border: solid 1px teal;
+  /* border-radius: 10%; */
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  right: 14vw;
+  top: 9vh;
+  transform: translateY(0%);
+  transition-delay: 0s, 0s, 0.3s;
+}
+
+.headerMenuLinks {
+  text-decoration: underline;
+  vertical-align: center;
   font-family: arial;
   color: purple;
   font-size: 13px;
   font-weight: bolder;
-  top: 60px;
-  margin-bottom: 10px;
+  padding: 2% 10%;
+  align-self: center;
 }
 
 .headerMenuLinks:hover {
   cursor: pointer;
+}
+
+.changeProfPic {
+  font-size: 13px;
+  text-align: center;
+  padding-right: 4%;
+  text-decoration: underline;
+  color: purple;
 }
 
 #bioEdit {
@@ -227,13 +284,9 @@ input:focus {
 }
 
 #profPic {
-  width: auto;
   height: 100px;
-  float: right;
   margin-right: 5%;
   display: inline-block;
-  border-radius: 20%;
-
 }
 
 #profPic:hover {
@@ -252,17 +305,17 @@ input:focus {
   background-color: rgba(255, 255, 255, 0.9);
 }
 
-.uploadBox{
+.uploadBox {
   width: 20vw;
-    height: 50vh;
-    margin-top: 10%;
+  height: 50vh;
+  margin-top: 10%;
 }
 
 .closeBtn {
   padding: 10px 10px;
-    font-weight: bold;
-    height: 20px;
-    width: 30px;
+  font-weight: bold;
+  height: 20px;
+  width: 30px;
 }
 
 .closeBtn:hover {
@@ -284,11 +337,16 @@ input:focus {
 .profileBox {
   grid-column: 1;
   grid-row: 1;
-  width: 28vw;
-  height: 50vh;
   margin: 10px 10px;
-  border-image-source: url('./ivy.png');
-  border-top: : 10px solid transparent;
+  width: 50vh;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border-image-source: url("./ivy.png"); */
+  /* border-top: 10px solid transparent; */
+  overflow: hidden;
+  border-radius: 40%;
 }
 
 .bioBox {
@@ -298,9 +356,19 @@ input:focus {
 }
 
 #profPicBig {
-  max-width:100%;
-  height:100%;
-  border-radius: 20%;
+  /* max-width: 100%; */
+  /* justify-self: center;
+  align-self: center;
+  height: auto;
+  max-width: 26vw; */
+  justify-self: center;
+  align-self: center;
+  max-height: 50vh;
+  width: auto;
+}
+
+#profPicBig:hover {
+  cursor: pointer;
 }
 
 .bioContent {
@@ -354,8 +422,8 @@ textarea {
   font-weight: bolder;
 }
 
-.commentText{
-    white-space: pre-line;
+.commentText {
+  white-space: pre-line;
 }
 
 #comment {
@@ -372,8 +440,8 @@ textarea {
   font-size: 15px;
 }
 
-input[type='file'] {
- color: transparent;
+input[type="file"] {
+  color: transparent;
 }
 
 .friends {
@@ -392,7 +460,7 @@ input[type='file'] {
   border-radius: 5px;
   width: 95%;
   height: 35px;
-  font-size:15px;
+  font-size: 15px;
   font-weight: bolder;
   background-color: teal;
 }
@@ -421,24 +489,23 @@ input[type='file'] {
   font-size: 18px;
   margin: 3% 8%;
   grid-column: 1;
-  overflow:scroll;
+  overflow: scroll;
 }
 
 .pendingReqContainer {
   margin: 3% 8%;
   grid-column: 2;
-  overflow:scroll;
+  overflow: scroll;
   font-weight: bolder;
   font-family: arial;
   color: teal;
   font-size: 18px;
-
 }
 
 h2 {
   color: rgb(57, 91, 82);
   font-size: 40px;
-  font-family: 'Cookie', cursive;
+  font-family: "Cookie", cursive;
   /* margin: 0; */
 }
 
@@ -463,7 +530,7 @@ h2 {
   border-radius: 5px;
   width: 33%;
   height: 35px;
-  font-size:15px;
+  font-size: 15px;
   font-weight: 700px;
   background-color: teal;
 }
@@ -488,58 +555,126 @@ h2 {
   -ms-transform: translateZ(0);
   transform: translateZ(0);
 }
+
+.onlineFriends {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 5% 5%;
+}
+
+.profPicOnlineBox {
+  height: 8vh;
+  width: 8vh;
+  overflow: hidden;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.profPicOnline {
+  width: auto;
+  max-height: 50px;
+  align-self: center;
+  justify-self: center;
+}
+
+.onlineNames {
+  margin-left: 3%;
+  font-size: 15px;
+  font-family: arial;
+}
+
+.onlineUsersHeadline {
+  /* text-align: center; */
+  margin: 0 5%;
+  font-family: "Cookie", cursive;
+  font-size: 30px;
+}
+
+.onlineUserBox {
+  background-color: rgba(238, 238, 238, 0.8);
+  width: 20vw;
+  height: 65vh;
+  right: 0;
+  position: absolute;
+  border-radius: 3%;
+  padding-top: 1%;
+  color: teal;
+  font-weight: bolder;
+}
+
 @-webkit-keyframes load4 {
   0%,
   100% {
-    box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
+    box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em,
+      0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
   }
   12.5% {
-    box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em,
+      0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
   }
   25% {
-    box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0,
+      0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
   }
   37.5% {
-    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em,
+      0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
   }
   50% {
-    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em,
+      0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
   }
   62.5% {
-    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em,
+      0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
   }
   75% {
-    box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+    box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em,
+      0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
   }
   87.5% {
-    box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+    box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em,
+      0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
   }
 }
+
 @keyframes load4 {
   0%,
   100% {
-    box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
+    box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em,
+      0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
   }
   12.5% {
-    box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em,
+      0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
   }
   25% {
-    box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0,
+      0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
   }
   37.5% {
-    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em,
+      0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
   }
   50% {
-    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em,
+      0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
   }
   62.5% {
-    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em,
+      0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
   }
   75% {
-    box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+    box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em,
+      0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
   }
   87.5% {
-    box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+    box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em,
+      0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
   }
 }
+
 /* Get your green-thumbed pals together to trade plants, swap tips and maybe even enjoy a scone or two as the spring gardening season begins. */
