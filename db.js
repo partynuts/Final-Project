@@ -149,9 +149,11 @@ exports.pullFriendsList = pullFriendsList;
 function pullOtherUsers(user_id) {
   return db.query(
     `Select users.id, users.first, users.last, users.profilePic, friendships.status, friendships.receiver_id, friendships.sender_id
-  FROM users
-  JOIN friendships
-  ON (receiver_id=$1 AND status = null)`,
+    FROM users
+    Left JOIN friendships
+    ON (receiver_id=$1 AND (status = 2 OR status=1) AND users.id = sender_id)
+    OR (sender_id = $1 AND (status = 2 OR status = 1) AND users.id = receiver_id)
+    WHERE status is null`,
     [user_id]
   );
 }

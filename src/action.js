@@ -97,3 +97,5 @@ function getComments() {
       console.log(e);
     });
 }
+
+exports.getComments = getComments;

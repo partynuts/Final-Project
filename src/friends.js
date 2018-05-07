@@ -53,6 +53,7 @@ class Friends extends React.Component {
       } else {
         pic = acceptedFriend.profilepic;
       }
+
       return (
         <div key={acceptedFriend.id} className="acceptedFriends">
           <Link to={`/user/${acceptedFriend.id}`}>
@@ -71,6 +72,8 @@ class Friends extends React.Component {
       );
     });
 
+    console.log(this.props.noFriendshipStatus);
+
     return (
       <div className="friendsWrapper">
         <div className="acceptedFriendsContainer">
@@ -81,7 +84,32 @@ class Friends extends React.Component {
           <h2> Your friend requests!</h2>
           {pendingReqList}
         </div>
-        <div />
+        <div className="noFriendsContainer">
+          <h2>Other plant-lovers you might want to connect with</h2>
+
+          {this.props.noFriendshipStatus &&
+            this.props.noFriendshipStatus.map(noStatusUser => {
+              return (
+                <div key={noStatusUser.id} className="noStatusUser">
+                  <Link to={`/user/${noStatusUser.id}`}>
+                    <img
+                      className="profPicFriends"
+                      src={noStatusUser.profilepic || "../defaultAvatar2.png"}
+                    />
+                  </Link>
+                  {noStatusUser.first} {noStatusUser.last}
+                  <button
+                    className="friendsBtn"
+                    onClick={() =>
+                      this.props.dispatch(makeFriendRequest(noStatusUser.id))
+                    }
+                  >
+                    Send friend request
+                  </button>
+                </div>
+              );
+            })}
+        </div>
       </div>
     );
   }
@@ -93,7 +121,7 @@ const mapStateToProps = function(state) {
       state.friends && state.friends.filter(friends => friends.status == 1),
     acceptedFriends:
       state.friends && state.friends.filter(friends => friends.status == 2),
-    noFriendshipStatus: state.otherPeople && state.otherPeople
+    noFriendshipStatus: state.noFriendshipStatus
   };
 };
 

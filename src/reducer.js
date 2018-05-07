@@ -4,8 +4,8 @@ export default function reducer(state = {}, action) {
   }
   if (action.type == "GET_OTHERS") {
     console.log("OTHER ACTIONS", action.others);
-    const { others } = action;
-    state = Object.assign({}, state, { otherPeople: others });
+    // const { others } = action;
+    state = Object.assign({}, state, { noFriendshipStatus: action.others });
   }
   if (action.type == "ACCEPT_FRIENDS") {
     console.log("action", action);

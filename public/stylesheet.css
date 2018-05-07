@@ -483,6 +483,7 @@ input[type="file"] {
   height: 75vh;
   display: grid;
   grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
 }
 
 .acceptedFriendsContainer {
@@ -492,11 +493,11 @@ input[type="file"] {
   font-size: 18px;
   margin: 3% 3%;
   grid-column: 1;
-  /* overflow: scroll; */
+  grid-row: 1;
   border: solid 2px teal;
   width: 85%;
   padding: 0 5%;
-  height: 88%;
+  height: 95%;
   overflow: auto;
   border-radius: 5%;
   background-color: rgba(238, 238, 238, 0.8);
@@ -506,7 +507,7 @@ input[type="file"] {
   background-color: rgba(238, 238, 238, 0.8);
   margin: 3% 8%;
   grid-column: 2;
-  /* overflow: scroll; */
+  grid-row: 1;
   font-weight: bolder;
   font-family: arial;
   color: teal;
@@ -518,9 +519,26 @@ input[type="file"] {
   border: solid 2px teal;
   width: 85%;
   padding: 0 5%;
-  height: 88%;
+  height: 95%;
   overflow: auto;
   border-radius: 5%;
+}
+
+.noFriendsContainer {
+  font-weight: bolder;
+  font-family: arial;
+  color: teal;
+  font-size: 18px;
+  margin: 3% 3%;
+  grid-column: 1;
+  grid-row: 2;
+  border: solid 2px teal;
+  width: 85%;
+  padding: 0 5%;
+  height: 95%;
+  overflow: auto;
+  border-radius: 5%;
+  background-color: rgba(238, 238, 238, 0.8);
 }
 
 h2 {
@@ -538,6 +556,13 @@ h2 {
 }
 
 .pendingReq {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3% 0;
+}
+
+.noStatusUser {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -632,6 +657,10 @@ h2 {
 .errmsg {
   font-size: 18px;
   color: red;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 @-webkit-keyframes load4 {

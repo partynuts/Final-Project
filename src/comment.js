@@ -74,8 +74,11 @@ export class Comment extends React.Component {
 
     return (
       // <div>
-      <h1>Hellooooo</h1>
+      <div>
+        <h1>Hellooooo</h1>
 
+        <textarea>write a comment</textarea>
+      </div>
       // <div className="commentText" onChange={this.props.lineBreaks}>
       //   <div>{allComments}</div>
       // </div>
