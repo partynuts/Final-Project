@@ -115,14 +115,7 @@ export class Userprofile extends React.Component {
         </div>
         <div className="wall">
           <div className="wallPosts">Share your thoughts</div>
-          <div className="CommentSection">
-            <Comment
-              lineBreaks={this.lineBreaks}
-              comment={this.props.wallData.comment}
-              username={this.props.wallData.username}
-              wallData={this.props.wallData}
-            />
-          </div>
+          <div className="CommentSection" />
 
           <div className="onlineUserBox">
             <Onliners />

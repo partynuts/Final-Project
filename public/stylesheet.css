@@ -42,6 +42,7 @@ h3 {
   text-align: end;
   margin: 0;
   font-family: arial;
+  text-shadow: 1px 1px 10px #fff, 1px 1px 10px #ccc;
 }
 
 .forms {
@@ -145,6 +146,7 @@ input:focus {
   color: rgb(57, 91, 82);
   text-align: center;
   font-weight: bold;
+  text-shadow: 1px 1px 10px #fff, 1px 1px 10px #ccc;
 }
 
 .submitBtn {
@@ -231,7 +233,7 @@ vertical-align: middle;
   background-color: rgba(238, 238, 238, 0.9);
   width: 300px;
   height: 50px;
-  z-index: 2;
+  z-index: 10;
   transition: all 0.5s ease-in-out 0.5s;
   position: absolute;
   border: solid 1px teal;
@@ -412,6 +414,7 @@ textarea {
   width: 65vw;
   /* height: 50vh; */
   margin: 10px 10px;
+  position: relative;
   /* border-style: solid; */
 }
 
@@ -487,19 +490,37 @@ input[type="file"] {
   font-family: arial;
   color: teal;
   font-size: 18px;
-  margin: 3% 8%;
+  margin: 3% 3%;
   grid-column: 1;
-  overflow: scroll;
+  /* overflow: scroll; */
+  border: solid 2px teal;
+  width: 85%;
+  padding: 0 5%;
+  height: 88%;
+  overflow: auto;
+  border-radius: 5%;
+  background-color: rgba(238, 238, 238, 0.8);
 }
 
 .pendingReqContainer {
+  background-color: rgba(238, 238, 238, 0.8);
   margin: 3% 8%;
   grid-column: 2;
-  overflow: scroll;
+  /* overflow: scroll; */
   font-weight: bolder;
   font-family: arial;
   color: teal;
   font-size: 18px;
+  border: solid 2px teal;
+  width: 84%;
+  padding: 0 5%;
+  margin: 3% 3%;
+  border: solid 2px teal;
+  width: 85%;
+  padding: 0 5%;
+  height: 88%;
+  overflow: auto;
+  border-radius: 5%;
 }
 
 h2 {
@@ -596,13 +617,21 @@ h2 {
 .onlineUserBox {
   background-color: rgba(238, 238, 238, 0.8);
   width: 20vw;
-  height: 65vh;
-  right: 0;
+  height: 70vh;
+  right: -42px;
   position: absolute;
   border-radius: 3%;
   padding-top: 1%;
   color: teal;
   font-weight: bolder;
+  z-index: 2;
+  top: 0;
+  overflow: scroll;
+}
+
+.errmsg {
+  font-size: 18px;
+  color: red;
 }
 
 @-webkit-keyframes load4 {
@@ -676,5 +705,3 @@ h2 {
       0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
   }
 }
-
-/* Get your green-thumbed pals together to trade plants, swap tips and maybe even enjoy a scone or two as the spring gardening season begins. */

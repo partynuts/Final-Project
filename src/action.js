@@ -78,3 +78,22 @@ function userLeft(data) {
 }
 
 exports.userLeft = userLeft;
+
+function getComments() {
+  axios
+    .get("/comment/" + this.props.receivingUserId)
+    .then(response => {
+      console.log(response.data);
+      if (response.data.success) {
+        for (let i = 0; i < response.data.wallData.length; i++) {
+          this.wallData.unshift(response.data.wallData[i]);
+          console.log(this.wallData[0].comment);
+        }
+      } else {
+        console.log("Error getting comments");
+      }
+    })
+    .catch(e => {
+      console.log(e);
+    });
+}

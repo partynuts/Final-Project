@@ -54,24 +54,24 @@ function insertBio(bio, id) {
 
 exports.insertBio = insertBio;
 
-function insertComments(username, comment, comment_id) {
+function insertComments(comment, commentingUser_id, receivingUser_id) {
   return db.query(
-    `INSERT INTO comments (username, comment, comment_id)
+    `INSERT INTO comments (comment, commentingUser_id, receivingUser_id)
   VALUES ($1, $2, $3)
   Returning *`,
-    [username, comment, comment_id]
+    [comment, commentingUser_id, receivingUser_id]
   );
 }
 
 exports.insertComments = insertComments;
 
-function displayComments(comment_id) {
+function displayComments(receivingUser_id) {
   return db.query(
     `SELECT *
     FROM comments
-    WHERE comment_id = $1
+    WHERE receivingUser_id = $1
     ORDER BY timeSent DESC`,
-    [comment_id]
+    [receivingUser_id]
   );
 }
 
@@ -98,17 +98,6 @@ function makeFriendRequest(sender_id, receiver_id) {
 }
 
 exports.makeFriendRequest = makeFriendRequest;
-
-// function changeFriendshipStatus(status, sender_id, receiver_id) {
-//   return db.query(
-//     `UPDATE friendships
-//     SET status=$1
-//     WHERE (sender_id =$2 AND receiver_id=$3) OR (receiver_id =$2 AND sender_id=$2)`,
-//     [status, sender_id, receiver_id]
-//   );
-// }
-//
-// exports.changeFriendshipStatus = changeFriendshipStatus;
 
 function cancelFriendshipRequest(sender_id, receiver_id) {
   return db.query(
@@ -159,9 +148,9 @@ exports.pullFriendsList = pullFriendsList;
 
 function pullOtherUsers(user_id) {
   return db.query(
-    `Select u.id, u.first, u.last, u.profilePic, f.status, f.receiver_id, f.sender_id
-  FROM users u
-  JOIN friendships f
+    `Select users.id, users.first, users.last, users.profilePic, friendships.status, friendships.receiver_id, friendships.sender_id
+  FROM users
+  JOIN friendships
   ON (receiver_id=$1 AND status = null)`,
     [user_id]
   );
@@ -170,7 +159,8 @@ function pullOtherUsers(user_id) {
 exports.pullOtherUsers = pullOtherUsers;
 
 function getUsersByIds(arrayOfIds) {
-  const query = `SELECT *
+  const query = `
+    SELECT *
     FROM users
     WHERE id = ANY($1)`;
   return db.query(query, [arrayOfIds]);

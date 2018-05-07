@@ -5,8 +5,6 @@ import { onlineUsers, userLeft, userJoined } from "./action";
 import { Link } from "react-router-dom";
 
 function Onliners(props) {
-  // const userUrl = location.pathname.user.id;
-
   console.log("lalalala");
   console.log("props", props);
   console.log("onliners in comp", props.onliners);
@@ -25,7 +23,7 @@ function Onliners(props) {
         <div key={online.id}>
           <div className="onlineFriends">
             <div className="profPicOnlineBox">
-              <Link to="/user/${online.id}">
+              <Link to={`/user/${online.id}`}>
                 <img className="profPicOnline" src={pic} />{" "}
               </Link>
             </div>

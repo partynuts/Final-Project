@@ -1,8 +1,7 @@
 import React from "react";
 import axios from "../axios";
-import {Link} from 'react-router-dom';
-import {Login} from './login.js';
-
+import { Link } from "react-router-dom";
+import { Login } from "./login.js";
 
 export class Register extends React.Component {
   constructor(props) {
@@ -18,7 +17,8 @@ export class Register extends React.Component {
   }
 
   submit() {
-    axios.post("/register", {
+    axios
+      .post("/register", {
         first: this.first,
         last: this.last,
         email: this.email,
@@ -42,33 +42,58 @@ export class Register extends React.Component {
   render() {
     return (
       <div className="formContainer">
-        {this.state.error && <div className="errmsg">Something went wrong. Please try again</div>}
+        {this.state.error && (
+          <div className="errmsg">Please fill out all fields.</div>
+        )}
         <div className="form">
           <div className="inputs">
             <div>
-              <input type="text" name="first" placeholder="First Name"  onChange={this.handleChange} />
-              <label >First Name</label>
+              <input
+                type="text"
+                name="first"
+                placeholder="First Name"
+                onChange={this.handleChange}
+              />
+              <label>First Name</label>
             </div>
             <div>
-              <input type="text" name="last" placeholder="Last Name" onChange={this.handleChange} />
-              <label >Last Name</label>
+              <input
+                type="text"
+                name="last"
+                placeholder="Last Name"
+                onChange={this.handleChange}
+              />
+              <label>Last Name</label>
             </div>
             <div>
-              <input type="email" name="email" placeholder="E-Mail" onChange={this.handleChange} />
-              <label >E-Mail</label>
+              <input
+                type="email"
+                name="email"
+                placeholder="E-Mail"
+                onChange={this.handleChange}
+              />
+              <label>E-Mail</label>
             </div>
             <div>
-              <input name="pw"  type="password" placeholder="Password" onChange={this.handleChange} />
-              <label >Password</label>
+              <input
+                name="pw"
+                type="password"
+                placeholder="Password"
+                onChange={this.handleChange}
+              />
+              <label>Password</label>
             </div>
-              <button className="submitBtn" onClick={this.submit}>Register</button>
+            <button className="submitBtn" onClick={this.submit}>
+              Register
+            </button>
           </div>
-
         </div>
         <div className="redirect">
-          <div>Already a member? Then log in<Link to="/login">  here</Link>!</div>
+          <div>
+            Already a member? Then <Link to="/login"> log in</Link>!
+          </div>
         </div>
       </div>
-    )
+    );
   }
 }

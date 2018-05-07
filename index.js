@@ -155,7 +155,7 @@ app.get("/userInfo", function(req, res) {
           //       item.timeSent = date.toLocaleDateString();
           // });
           // result.rows[0].pw = null;
-          req.session.userStuff = result.rows[0];
+          // req.session.userStuff = result.rows[0];
           res.json({
             success: true,
             userData: result.rows[0],
@@ -188,13 +188,6 @@ app.get("/get-user/:userId", function(req, res) {
   }
   getProfileInfo(req.params.userId)
     .then(results => {
-      req.session.user = {
-        first: results.rows[0].first,
-        last: results.rows[0].last,
-        profilePic: results.rows[0].profilepic,
-        bio: results.rows[0].bio,
-        id: results.rows[0].id
-      };
       console.log("prof info other user", results);
       res.json({
         success: true,
@@ -328,8 +321,8 @@ app.post("/bio", function(req, res) {
 });
 
 app.post("/comment", function(req, res) {
-  if (req.body.comment && req.body.username) {
-    insertComments(req.body.comment, req.body.username, req.session.user.id)
+  if (req.body.comment) {
+    insertComments(req.body.comment, req.session.user.id)
       .then(function(result) {
         res.json({
           success: true,
@@ -431,6 +424,7 @@ app.post("/acceptFriendship/:userId", function(req, res) {
 
 app.get("/friends", function(req, res) {
   console.log("in friends get route");
+  console.log(req.session.user.id);
   pullFriendsList(req.session.user.id).then(function(results) {
     console.log("resukts", results);
     res.json({

@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "../axios";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 export class Login extends React.Component {
   constructor(props) {
@@ -16,7 +16,8 @@ export class Login extends React.Component {
   }
 
   submit() {
-    axios.post("/login", {
+    axios
+      .post("/login", {
         email: this.email,
         pw: this.pw
       })
@@ -38,27 +39,42 @@ export class Login extends React.Component {
   render() {
     return (
       <div className="formContainer">
-        {this.state.error && <div className="errmsg">Something went wrong. Please try again</div>}
+        {this.state.error && (
+          <div className="errmsg">Please fill out all fields.</div>
+        )}
         <div className="form">
-         <div className="inputs">
-          <div>
-            <input name="email" type="email" placeholder="E-Mail"  onChange={this.handleChange} />
-            <label>E-Mail</label>
+          <div className="inputs">
+            <div>
+              <input
+                name="email"
+                type="email"
+                placeholder="E-Mail"
+                onChange={this.handleChange}
+              />
+              <label>E-Mail</label>
+            </div>
+            <div>
+              <input
+                name="pw"
+                type="password"
+                placeholder="Password"
+                onChange={this.handleChange}
+              />
+              <label>Password</label>
+            </div>
+            <button className="submitBtn" onClick={this.submit}>
+              Log In
+            </button>
           </div>
+        </div>
+        <div className="redirect">
           <div>
-            <input name="pw"  type="password" placeholder="Password" onChange={this.handleChange} />
-            <label>Password</label>
+            No acoount? <Link to="/"> Sign up</Link>!
           </div>
-          <button className="submitBtn" onClick={this.submit}>Log In</button>
-
         </div>
       </div>
-      <div className="redirect">
-        <div>Not registered yet? Create an<Link to="/">  account</Link>!</div>
-      </div>
-    </div>
     );
   }
 }
 
-const styleForm = {display: "block", fontWeight: "bold"};
+const styleForm = { display: "block", fontWeight: "bold" };

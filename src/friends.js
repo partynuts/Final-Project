@@ -31,7 +31,7 @@ class Friends extends React.Component {
       }
       return (
         <div key={pendingRequest.id} className="pendingReq">
-          <Link to="/user/${this.props.user.id">
+          <Link to={`/user/${pendingRequest.id}`}>
             <img className="profPicFriends" src={pic} />{" "}
           </Link>
           {pendingRequest.first} {pendingRequest.last}
@@ -55,7 +55,7 @@ class Friends extends React.Component {
       }
       return (
         <div key={acceptedFriend.id} className="acceptedFriends">
-          <Link to="/otherprofile">
+          <Link to={`/user/${acceptedFriend.id}`}>
             <img className="profPicFriends" src={pic} />{" "}
           </Link>
           {acceptedFriend.first} {acceptedFriend.last}
