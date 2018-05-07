@@ -79,16 +79,16 @@ function userLeft(data) {
 
 exports.userLeft = userLeft;
 
-function getComments() {
+function getAllComments() {
   axios
     .get("/comment/" + this.props.receivingUserId)
     .then(response => {
-      console.log(response.data);
+      console.log("get all comments", response.data);
       if (response.data.success) {
-        for (let i = 0; i < response.data.wallData.length; i++) {
-          this.wallData.unshift(response.data.wallData[i]);
-          console.log(this.wallData[0].comment);
-        }
+        return {
+          type: "GET_ALL_COMMENTS",
+          allComments: response.data
+        };
       } else {
         console.log("Error getting comments");
       }
@@ -98,4 +98,33 @@ function getComments() {
     });
 }
 
-exports.getComments = getComments;
+exports.getAllComments = getAllComments;
+
+function sendComment(commentText, userId) {
+  console.log("comment sending fn firing");
+  console.log("this commentTetx", commentText, userId);
+  axios
+    .post("/comment", {
+      commentText: commentText,
+      userId: userId
+    })
+    .then(resp => {
+      console.log("resp SendComment", resp);
+      return {
+        type: "SEND_COMMENT",
+        commentText,
+        userId
+      };
+    });
+}
+
+exports.sendComment = sendComment;
+
+function setComment(e) {
+  return {
+    type: "SET_INPUT",
+    comment: e.target.value
+  };
+}
+
+exports.setComment = setComment;

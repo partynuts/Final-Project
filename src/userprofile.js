@@ -3,7 +3,7 @@ import { Uploader } from "./uploader.js";
 import { Bio } from "./bio.js";
 import { Profile } from "./profile.js";
 import axios from "../axios";
-import { Comment } from "./comment.js";
+// import { Comment } from "./comment.js";
 import { Link } from "react-router-dom";
 import Onliners from "./onliners";
 

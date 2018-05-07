@@ -148,23 +148,10 @@ io.on("connection", function(socket) {
 app.get("/userInfo", function(req, res) {
   setLogin(req.session.user.email)
     .then(function(result) {
-      displayComments(req.session.user.id)
-        .then(function(results) {
-          // result.rows.forEach(item => {
-          //     let date = new Date (item.timeSent);
-          //       item.timeSent = date.toLocaleDateString();
-          // });
-          // result.rows[0].pw = null;
-          // req.session.userStuff = result.rows[0];
-          res.json({
-            success: true,
-            userData: result.rows[0],
-            wallData: results.rows
-          });
-        })
-        .catch(e => {
-          console.log(e);
-        });
+      res.json({
+        success: true,
+        userData: result.rows[0]
+      });
     })
     .catch(e => {
       console.log(e);
@@ -181,6 +168,7 @@ app.get("/welcome", function(req, res) {
 
 app.get("/get-user/:userId", function(req, res) {
   console.log("match params in get user:", req.params);
+  console.log("get other user ids", req.params.userId, req.session.user.id);
   if (req.params.userId == req.session.user.id) {
     return res.json({
       sameProfile: true
@@ -321,12 +309,14 @@ app.post("/bio", function(req, res) {
 });
 
 app.post("/comment", function(req, res) {
-  if (req.body.comment) {
-    insertComments(req.body.comment, req.session.user.id)
+  if (req.body) {
+    insertComments(req.body.commentText, req.session.user.id, req.body.userId)
       .then(function(result) {
+        console.log("results in gettin g comments", result.rows);
         res.json({
           success: true,
           wallData: result.rows[0]
+
           // comment: result.rows[0].comment,
           // username: result.rows[0].username
         });
@@ -340,6 +330,22 @@ app.post("/comment", function(req, res) {
       success: false
     });
   }
+});
+
+app.get("/comment/:receivinngUserId", function(req, res) {
+  displayComments(req.session.user.id).then(function(results) {
+    console.log("in get comments route");
+    res.json({
+      success: true,
+      wallData: results.rows
+    });
+    // result.rows.forEach(item => {
+    //     let date = new Date (item.timeSent);
+    //       item.timeSent = date.toLocaleDateString();
+    // });
+    // result.rows[0].pw = null;
+    // req.session.userStuff = result.rows[0];
+  });
 });
 
 app.get("/friendship/:userId", function(req, res) {

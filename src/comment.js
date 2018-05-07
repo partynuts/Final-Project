@@ -1,115 +1,57 @@
 import React from "react";
 import axios from "../axios";
+import { sendComment, setComment, getAllComments } from "./action";
+import { connect } from "react-redux";
+import { reducer } from "./reducer";
 
-export class Comment extends React.Component {
+class Comment extends React.Component {
   constructor(props) {
-    console.log("In comment class showing props", props);
     super(props);
-    this.state = { commentBoxVisible: false };
-    // this.setComment = this.setComment.bind(this);
-    // this.setUsername = this.setUsername.bind(this);
-    // this.toggleComment = this.toggleComment.bind(this);
+    this.userinput = "";
   }
-
   componentDidMount() {
-    console.log("mounted in comments");
-    console.log("rec userId", this.props.receivingUserId);
+    console.log("thisCOMMENT", this);
+
+    this.props.dispatch(getAllComments());
   }
-
-  // toggleComment() {
-  //   console.log("Comment Box opening");
-  //   this.setState({ commentBoxVisible: !this.state.commentBoxVisible });
-  // }
-  //
-  // setComment(e) {
-  //   this.setState(
-  //     {
-  //       wallData: {
-  //         ...this.state.wallData,
-  //         comment: e.target.value
-  //       }
-  //     },
-  //     function() {
-  //       console.log("this.state in set Comment:", this.state.wallData);
-  //     }
-  //   );
-  // }
-  // setUsername(e) {
-  //   this.setState({
-  //     wallData: {
-  //       ...this.state.wallData,
-  //       username: e.target.value
-  //     }
-  //   });
-  // }
-
-  // sendComment() {
-  //   console.log("comment sending fn firing");
-  //   axios
-  //     .post("/comment", {
-  //       comment: this.props.wallData.comment
-  //       // username: this.props.wallData.username
-  //     })
-  //     .then(resp => {
-  //       if (resp.data.success) {
-  //         console.log("Response Data:", resp);
-  //         this.setState({ wallData: resp.data.wallData });
-  //         this.setState({ commentBoxVisible: false });
-  //       }
-  //     })
-  //     .catch(e => {
-  //       console.log(e);
-  //     });
-  // }
-
+  compileInput(e) {
+    this.userinput = e.target.value;
+  }
   render() {
-    // let allComments = this.props.wallData.map(com => {
-    //   return (
-    //     <div key={com.id}>
-    //       <p>{com.username}</p>
-    //       <p>{com.comment}</p>
-    //     </div>
-    //   );
-    // });
+    if (!this.props) {
+      console.log("this im render der comment comp", this.props);
+      return "LEEEEEEEEEEEEEEEEEEEEEEEEEEEEERRRRRRRRRRRRRRR!!!!!!";
+    } else {
+      return (
+        <div>
+          <h1>Hellooooo</h1>
 
-    return (
-      // <div>
-      <div>
-        <h1>Hellooooo</h1>
+          <div>
+            <textarea onChange={e => this.compileInput(e)} />
+          </div>
 
-        <textarea>write a comment</textarea>
-      </div>
-      // <div className="commentText" onChange={this.props.lineBreaks}>
-      //   <div>{allComments}</div>
-      // </div>
-      // <span id="comment" onClick={this.props.toggleComment}>
-      //   Post your comment here
-      // </span>
-      //
-      // {this.props.commentBoxVisible && (
-      //   <div>
-      //     <div>
-      //       <input
-      //         type="username"
-      //         id="comUN"
-      //         name="userName"
-      //         placeholder="username"
-      //         onChange={this.props.setUsername}
-      //       />
-      //     </div>
-      //     <div>
-      //       <textarea
-      //         name="comment"
-      //         onChange={this.props.setComment}
-      //         value={this.props.comment || ""}
-      //       />
-      //     </div>
-      //     <button type="submit" onClick={this.props.sendComment}>
-      //       Send comment
-      //     </button>
-      //   </div>
-      // )}
-      // </div>
-    );
+          <div>
+            <button
+              type="submit"
+              onClick={() =>
+                this.props.dispatch(
+                  sendComment(this.userinput, this.props.receivingUserId)
+                )
+              }
+            >
+              Send comment
+            </button>
+          </div>
+        </div>
+      );
+    }
   }
 }
+
+const mapStateToProps = function(state) {
+  return {
+    allComments: state.allComments
+  };
+};
+
+export default connect(mapStateToProps)(Comment);

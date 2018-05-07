@@ -69,6 +69,8 @@ function displayComments(receivingUser_id) {
   return db.query(
     `SELECT *
     FROM comments
+    JOIN users
+    ON commentingUser_id = users.id
     WHERE receivingUser_id = $1
     ORDER BY timeSent DESC`,
     [receivingUser_id]
@@ -81,6 +83,7 @@ function getProfileInfo(userId) {
   return db.query(
     `SELECT *
     FROM users
+
     WHERE id = $1`,
     [userId]
   );

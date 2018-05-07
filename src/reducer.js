@@ -51,11 +51,24 @@ export default function reducer(state = {}, action) {
     }));
   }
   if (action.type == "JOINED_USER") {
-    console.log("I just joined");
     let newUser = action.newUser;
     return {
       ...state,
       onliners: state.onliners.concat(newUser)
+    };
+  }
+  if (action.type == "SEND_COMMENT") {
+    return {
+      ...state,
+      commentText: action.commentText,
+      userId: action.userId
+    };
+  }
+  if (action.type == "GET_ALL_COMMENTS") {
+    console.log("getting comments from db", action.allComments);
+    return {
+      ...state,
+      allComments: action.allComments
     };
   }
 

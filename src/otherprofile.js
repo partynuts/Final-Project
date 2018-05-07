@@ -2,7 +2,7 @@ import React from "react";
 import axios from "../axios";
 import { Bio } from "./bio";
 import { Friendship } from "./friendship";
-import { Comment } from "./comment";
+import Comment from "./comment";
 
 export class OtherProfile extends React.Component {
   constructor(props) {
@@ -19,7 +19,11 @@ export class OtherProfile extends React.Component {
       .get("/get-user/" + this.props.match.params.userId)
       .then(response => {
         console.log("data self", response.data);
-        if (response.data.id == response.data.self) {
+        if (
+          response.data.success == false &&
+          response.data.id == response.data.self
+        ) {
+          // this.setState({ sameProfile: response.data.sameProfile });
           this.props.history.push("/");
         } else if (response.data.success) {
           console.log("response data in get otherprofile", response.data);
@@ -90,7 +94,7 @@ export class OtherProfile extends React.Component {
         </div>
         <div className="wall">
           <div className="wallPosts">Share your thoughts</div>
-          <Comment receivingUserId={this.state.receivingUserId} />
+          <Comment receivingUserId={this.state.id} />
         </div>
       </div>
     );
