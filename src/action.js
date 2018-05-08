@@ -118,7 +118,13 @@ function sendComment(commentText, userId) {
 
 exports.sendComment = sendComment;
 
-function mostRecentTenMessages(data) {}
+export function chatMessage(data) {
+  console.log("chat data", data);
+  return {
+    type: "GET_MESSAGES",
+    chatMsgs: data
+  };
+}
 
 // function setComment(e) {
 //   return {

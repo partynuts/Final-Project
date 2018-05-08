@@ -10,6 +10,9 @@ export function Menu(props) {
       <div className="headerMenuLinks">
         <a href="/friendslist"> Friends </a>
       </div>
+      <div className="headerMenuLinks">
+        <a href="/chat"> Chat </a>
+      </div>
     </div>
   );
 }

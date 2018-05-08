@@ -77,6 +77,13 @@ export default function reducer(state = {}, action) {
       allComments: action.allComments
     };
   }
+  if (action.type == "GET_MESSAGES") {
+    console.log("action msgs", action.chatMsgs);
+    return {
+      ...state,
+      chatMsgs: action.chatMsgs
+    };
+  }
 
   console.log("state after update", state);
   return state;

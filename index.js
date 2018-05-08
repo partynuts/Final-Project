@@ -101,6 +101,7 @@ app.get("/user", requireLogin, (req, res) => {
 });
 
 let onlineUsers = [];
+let latestMsgs = [];
 
 io.on("connection", function(socket) {
   const session = socket.request.session;
@@ -111,10 +112,32 @@ io.on("connection", function(socket) {
     socketId: socket.id,
     userId: session.user.id
   });
+
   const ids = onlineUsers.map(user => user.userId);
   getUsersByIds(ids).then(result => {
     socket.emit("onlineUsers", {
       online: result.rows
+    });
+  });
+
+  io.sockets.emit("chatMessages", latestMsgs);
+
+  socket.on("chatMessage", data => {
+    getProfileInfo(session.user.id).then(response => {
+      let msgInfo = {
+        chatMsg: data,
+        first: session.user.first,
+        last: session.user.last,
+        profPic: response.rows[0].profilepic,
+        time: new Date()
+      };
+      latestMsgs.push(msgInfo);
+      if (latestMsgs.length > 10) {
+        latestMsgs.shift();
+        io.sockets.emit("chatMessages", latestMsgs);
+      } else {
+        io.sockets.emit("chatMessages", latestMsgs);
+      }
     });
   });
 

@@ -29,9 +29,7 @@ export class Profile extends React.Component {
         <div className="welcomeDiv" id="welcome">
           Welcome {this.props.first}!
         </div>
-        <div>
-          <Chat />
-        </div>
+
         <div className="menuLinksDiv" />
         <div className="icon">
           <i
