@@ -32,7 +32,8 @@ export class Userprofile extends React.Component {
           console.log("response data", response.data);
           this.setState(
             {
-              wallData: response.data.wallData
+              userData: response.data.userData
+              // wallData: response.data.wallData
             },
             function() {
               console.log(this.state);
@@ -57,13 +58,6 @@ export class Userprofile extends React.Component {
     this.setState({ bioBoxVisible: !this.state.bioBoxVisible });
   }
 
-  // toggleComment() {
-  //   console.log("toggle Comment Box. this.state:", this.state);
-  //   console.log("toggle Comment Box. this.props:", this.props);
-  //
-  //   this.setState({ commentBoxVisible: !this.state.commentBoxVisible });
-  // }
-
   changeBio() {
     axios
       .post("/bio", { bio: this.props.bio })
@@ -79,7 +73,7 @@ export class Userprofile extends React.Component {
   }
 
   render() {
-    if (!this.props.wallData) {
+    if (!this.props) {
       return <div className="loader">Loading...</div>;
     }
 

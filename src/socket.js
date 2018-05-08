@@ -20,6 +20,14 @@ export function init(store) {
       console.log("User just left");
       store.dispatch(userLeft(data));
     });
+
+    socket.on("mostRecentTenMessages", data => {
+      store.dispatch(mostRecentTenMessages(data));
+    });
+
+    socket.on("chatMessage", data => {
+      store.dispatch(chatMessage(data));
+    });
   }
 
   return socket;

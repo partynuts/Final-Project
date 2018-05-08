@@ -123,12 +123,6 @@ io.on("connection", function(socket) {
       newUser: response.rows[0]
     });
   });
-  // console.log(onlineUsers.find(user => socket.id == session.user.id));
-  // if (onlineUsers.find(user => socket.id == session.user.id)) {
-  //   socket.broadcast.emit("userJoined", {
-  //     userData: session.userData
-  //   });
-  // }
 
   // if (!session.user) {
   //   return socket.disconnect(true);
@@ -312,10 +306,19 @@ app.post("/comment", function(req, res) {
   if (req.body) {
     insertComments(req.body.commentText, req.session.user.id, req.body.userId)
       .then(function(result) {
-        console.log("results in gettin g comments", result.rows);
+        displayComments(req.params.receivingUserId).then(function(results) {
+          console.log("in get comments route", result);
+          results.rows.forEach(item => {
+            let date = new Date(item.timesent);
+            item.timesent = date.toLocaleString();
+          });
+        });
+
+        console.log("results in gettin g comments", results.rows);
         res.json({
           success: true,
-          wallData: result.rows[0]
+          wallData: results.rows,
+          commentText: result.rows[0]
 
           // comment: result.rows[0].comment,
           // username: result.rows[0].username
@@ -332,19 +335,17 @@ app.post("/comment", function(req, res) {
   }
 });
 
-app.get("/comment/:receivinngUserId", function(req, res) {
-  displayComments(req.session.user.id).then(function(results) {
-    console.log("in get comments route");
+app.get("/comment/:receivingUserId", function(req, res) {
+  displayComments(req.params.receivingUserId).then(function(results) {
+    console.log("in get comments route", results);
+    results.rows.forEach(item => {
+      let date = new Date(item.timesent);
+      item.timesent = date.toLocaleString();
+    });
     res.json({
       success: true,
       wallData: results.rows
     });
-    // result.rows.forEach(item => {
-    //     let date = new Date (item.timeSent);
-    //       item.timeSent = date.toLocaleDateString();
-    // });
-    // result.rows[0].pw = null;
-    // req.session.userStuff = result.rows[0];
   });
 });
 

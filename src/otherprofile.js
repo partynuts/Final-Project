@@ -94,7 +94,7 @@ export class OtherProfile extends React.Component {
         </div>
         <div className="wall">
           <div className="wallPosts">Share your thoughts</div>
-          <Comment receivingUserId={this.state.id} />
+          {this.state.id && <Comment receivingUserId={this.state.id} />}
         </div>
       </div>
     );

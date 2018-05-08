@@ -6,31 +6,44 @@ import { reducer } from "./reducer";
 
 class Comment extends React.Component {
   constructor(props) {
+    console.log("props in cons", props);
     super(props);
     this.userinput = "";
+    this.lineBreaks = "";
+    this.commentBoxVisible = false;
   }
   componentDidMount() {
     console.log("thisCOMMENT", this);
-
-    this.props.dispatch(getAllComments());
+    this.props.dispatch(getAllComments(this.props.receivingUserId));
   }
   compileInput(e) {
     this.userinput = e.target.value;
   }
+  lineBreaks(e) {
+    if (e.keyCode == 13) {
+      commentText.textContent = e.target.value;
+    }
+  }
+  toggleComment() {
+    console.log("Comment Box opening");
+    this.commentBoxVisible = !this.commentBoxVisible;
+  }
   render() {
     if (!this.props) {
       console.log("this im render der comment comp", this.props);
-      return "LEEEEEEEEEEEEEEEEEEEEEEEEEEEEERRRRRRRRRRRRRRR!!!!!!";
+      return null;
     } else {
+      console.log("this im render der comp", this);
       return (
         <div>
-          <h1>Hellooooo</h1>
-
-          <div>
-            <textarea onChange={e => this.compileInput(e)} />
-          </div>
-
-          <div>
+          <div className="commentBox">
+            <h1 onClick={() => this.toggleComment()}>Hellooooo</h1>
+            <div>
+              <textarea
+                className="commentTextarea"
+                onChange={e => this.compileInput(e)}
+              />
+            </div>
             <button
               type="submit"
               onClick={() =>
@@ -41,6 +54,27 @@ class Comment extends React.Component {
             >
               Send comment
             </button>
+          </div>
+          <div className="commentsBox">
+            {this.props.allComments &&
+              this.props.allComments.map(userComments => {
+                return (
+                  <div key={userComments.id} className="userComments">
+                    <div className="userNameComment">
+                      {" "}
+                      {userComments.first}
+                      {userComments.last}
+                    </div>
+                    <div className="timeSent">{userComments.timesent}</div>
+                    <div
+                      className="commentText"
+                      onChange={e => this.lineBreaks(e)}
+                    >
+                      {userComments.comment}
+                    </div>
+                  </div>
+                );
+              })}
           </div>
         </div>
       );

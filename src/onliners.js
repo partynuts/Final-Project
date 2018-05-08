@@ -5,9 +5,6 @@ import { onlineUsers, userLeft, userJoined } from "./action";
 import { Link } from "react-router-dom";
 
 function Onliners(props) {
-  console.log("lalalala");
-  console.log("props", props);
-  console.log("onliners in comp", props.onliners);
   if (!props.onliners) {
     return null;
   } else {

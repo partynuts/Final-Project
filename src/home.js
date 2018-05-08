@@ -9,6 +9,7 @@ import { OtherProfile } from "./otherprofile.js";
 import { connect } from "react-redux";
 import Friends from "./friends";
 import Onliners from "./onliners";
+import Chat from "./chat";
 import { Menu } from "./menu";
 
 export class Home extends React.Component {
@@ -186,6 +187,7 @@ export class Home extends React.Component {
             <Route exact path="/friendslist" component={Friends} />
             <Route exact path="/onlineUsers" component={Onliners} />
             <Route exact path="/user/:userId" component={OtherProfile} />
+            <Route exact path="/chat" component={Chat} />
           </div>
         </BrowserRouter>
       </div>

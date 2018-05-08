@@ -79,23 +79,16 @@ function userLeft(data) {
 
 exports.userLeft = userLeft;
 
-function getAllComments() {
-  axios
-    .get("/comment/" + this.props.receivingUserId)
-    .then(response => {
-      console.log("get all comments", response.data);
-      if (response.data.success) {
-        return {
-          type: "GET_ALL_COMMENTS",
-          allComments: response.data
-        };
-      } else {
-        console.log("Error getting comments");
-      }
-    })
-    .catch(e => {
-      console.log(e);
-    });
+function getAllComments(receivingUserId) {
+  return axios.get("/comment/" + receivingUserId).then(response => {
+    console.log("get all comments", response.data);
+    if (response.data.success) {
+      return {
+        type: "GET_ALL_COMMENTS",
+        allComments: response.data.wallData
+      };
+    }
+  });
 }
 
 exports.getAllComments = getAllComments;
@@ -111,8 +104,13 @@ function sendComment(commentText, userId) {
     .then(resp => {
       console.log("resp SendComment", resp);
       return {
+        type: "GET_ALL_COMMENTS",
+        commentText: resp.data.wallData,
+        userId
+      };
+      return {
         type: "SEND_COMMENT",
-        commentText,
+        commentText: resp.data.commentText,
         userId
       };
     });
@@ -120,11 +118,13 @@ function sendComment(commentText, userId) {
 
 exports.sendComment = sendComment;
 
-function setComment(e) {
-  return {
-    type: "SET_INPUT",
-    comment: e.target.value
-  };
-}
+function mostRecentTenMessages(data) {}
 
-exports.setComment = setComment;
+// function setComment(e) {
+//   return {
+//     type: "SET_INPUT",
+//     comment: e.target.value
+//   };
+// }
+//
+// exports.setComment = setComment;

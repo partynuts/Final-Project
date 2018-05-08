@@ -425,8 +425,50 @@ textarea {
   font-weight: bolder;
 }
 
+.commentTextarea {
+  width: 250px;
+  height: 100px;
+}
+
+.commentBox {
+  margin-bottom: 10px;
+}
+
+.commentsBox {
+  border-style: inset;
+  width: 500px;
+  height: 50vh;
+  overflow: scroll;
+  position: relative;
+}
+.userComments {
+  border: 1px solid teal;
+  width: 450px;
+  margin: 10px 10px;
+  color: teal;
+  background-color: rgb(234, 245, 239);
+  font-family: arial;
+}
+
 .commentText {
   white-space: pre-line;
+  /* font-weight: bolder; */
+  padding: 5px 5px;
+  font-size: 30px;
+  font-family: cookie, cursive;
+}
+
+.userNameComment {
+  padding: 5px 5px;
+  display: inline-block;
+}
+
+.timeSent {
+  display: inline-block;
+  color: lightgrey;
+  font-style: italic;
+  font-size: 12px;
+  margin-left: 5px;
 }
 
 #comment {

@@ -5,6 +5,7 @@ import { Userprofile } from "./userprofile.js";
 import { Welcome } from "./welcome";
 import { Link } from "react-router-dom";
 import { Menu } from "./menu";
+import Chat from "./chat";
 
 export class Profile extends React.Component {
   constructor(props) {
@@ -27,6 +28,9 @@ export class Profile extends React.Component {
       <div>
         <div className="welcomeDiv" id="welcome">
           Welcome {this.props.first}!
+        </div>
+        <div>
+          <Chat />
         </div>
         <div className="menuLinksDiv" />
         <div className="icon">

@@ -58,6 +58,7 @@ export default function reducer(state = {}, action) {
     };
   }
   if (action.type == "SEND_COMMENT") {
+    console.log("Send in reducer", action.commentText);
     return {
       ...state,
       commentText: action.commentText,
@@ -66,6 +67,11 @@ export default function reducer(state = {}, action) {
   }
   if (action.type == "GET_ALL_COMMENTS") {
     console.log("getting comments from db", action.allComments);
+
+    if (action.commentText) {
+      let allComments = action.allComments;
+      allComments.push(action.commentText);
+    }
     return {
       ...state,
       allComments: action.allComments
