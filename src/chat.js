@@ -6,13 +6,16 @@ import { Link } from "react-router-dom";
 import { emit } from "./socket";
 
 class Chat extends React.Component {
+  componentDidMount() {
+    let textarea = document.getElementById("textarea");
+  }
+
   compileInput(e) {
     this.userinput = e.target.value;
   }
   sendMessage() {
-    console.log(this.userinput);
-
     emit("chatMessage", this.userinput);
+    textarea.value = "";
   }
   toggleChat() {}
 
@@ -42,12 +45,14 @@ class Chat extends React.Component {
           </div>
           <div className="chatTextingPart">
             <textarea
+              id="textarea"
               className="chatTextBox"
               onChange={e => this.compileInput(e)}
             />
-          </div>
-          <div>
-            <button onClick={() => this.sendMessage(this.userinput)}>
+            <button
+              className="chatBtn"
+              onClick={() => this.sendMessage(this.userinput)}
+            >
               Send message
             </button>
           </div>

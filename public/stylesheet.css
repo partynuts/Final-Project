@@ -297,7 +297,7 @@ vertical-align: middle;
 
 .uploadModal {
   position: fixed;
-  /* z-index: 1; */
+  z-index: 20;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -426,8 +426,8 @@ textarea {
 }
 
 .commentTextarea {
-  width: 250px;
-  height: 100px;
+  width: 400px;
+  height: 50px;
 }
 
 .commentBox {
@@ -436,15 +436,15 @@ textarea {
 
 .commentsBox {
   border-style: inset;
-  width: 500px;
-  height: 50vh;
+  width: 760px;
+  height: 40vh;
   overflow: scroll;
   position: relative;
-  border-radius: 3%;
+  border-radius: 3vh;
 }
 .userComments {
   border: 1px solid teal;
-  width: 450px;
+  width: 700px;
   margin: 10px 10px;
   color: teal;
   background-color: rgb(234, 245, 239);
@@ -472,6 +472,12 @@ textarea {
   margin-left: 5px;
 }
 
+.comBtn {
+  border-radius: 3vh;
+  background-color: teal;
+  font-weight: bolder;
+}
+
 #comment {
   color: purple;
   cursor: pointer;
@@ -488,6 +494,7 @@ textarea {
 
 input[type="file"] {
   color: transparent;
+  width: 130px;
 }
 
 .friends {
@@ -529,26 +536,30 @@ input[type="file"] {
   grid-template-rows: 50% 50%;
 }
 
+.friendsWrapper h2 {
+  margin-top: 0;
+}
+
 .acceptedFriendsContainer {
   font-weight: bolder;
   font-family: arial;
   color: teal;
   font-size: 18px;
-  margin: 3% 3%;
+  margin: 2% 3%;
   grid-column: 1;
   grid-row: 1;
   border: solid 2px teal;
-  width: 85%;
-  padding: 0 5%;
-  height: 95%;
+  width: 45vw;
+  padding: 5px 10px;
+  height: 36vh;
   overflow: auto;
-  border-radius: 5%;
+  border-radius: 3vh;
   background-color: rgba(238, 238, 238, 0.8);
 }
 
 .pendingReqContainer {
   background-color: rgba(238, 238, 238, 0.8);
-  margin: 3% 8%;
+  margin: 2% 8%;
   grid-column: 2;
   grid-row: 1;
   font-weight: bolder;
@@ -556,15 +567,14 @@ input[type="file"] {
   color: teal;
   font-size: 18px;
   border: solid 2px teal;
-  width: 84%;
-  padding: 0 5%;
-  margin: 3% 3%;
+  padding: 5px 10px;
+  margin: 2% 2%;
   border: solid 2px teal;
-  width: 85%;
+  width: 41vw;
   padding: 0 5%;
-  height: 95%;
+  height: 38vh;
   overflow: auto;
-  border-radius: 5%;
+  border-radius: 3vh;
 }
 
 .noFriendsContainer {
@@ -572,16 +582,21 @@ input[type="file"] {
   font-family: arial;
   color: teal;
   font-size: 18px;
-  margin: 3% 3%;
-  grid-column: 1;
+  margin: 3% 2%;
+  grid-column: 1/3;
   grid-row: 2;
   border: solid 2px teal;
-  width: 85%;
-  padding: 0 5%;
-  height: 95%;
+  width: 93vw;
+  padding: 5px 10px;
+  height: 36vh;
   overflow: auto;
-  border-radius: 5%;
+  border-radius: 3vh;
   background-color: rgba(238, 238, 238, 0.8);
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.chatHeadline {
 }
 
 h2 {
@@ -607,7 +622,7 @@ h2 {
 
 .noStatusUser {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   margin: 3% 0;
 }
@@ -699,12 +714,13 @@ h2 {
 
 .chatBox {
   background-color: rgba(0, 128, 128, 0.8);
-  border-radius: 5%;
+  border-radius: 3vh;
   border: 1px solid teal;
   height: 50vh;
   padding: 5px 5px;
   grid-row: 1;
   overflow: scroll;
+  /* background: url("./ivy.png"); */
 }
 .chatUserInfo {
   display: flex;
@@ -748,24 +764,44 @@ h2 {
 }
 
 .chatTextingPart {
-  margin-top: 30px;
+  margin-top: 3vh;
   grid-row: 2;
+  /* width: 465px; */
+  /* justify-self: center; */
+  display: flex;
+  justify-content: space-evenly;
 }
 
-textarea.chatTextBox {
-  height: 50px;
-  width: 298px;
+.chatBtn {
+  height: 5vh;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: bolder;
+  background-color: teal;
+}
+
+.chatBtn:hover {
+  cursor: pointer;
+}
+
+.chatTextBox {
+  height: 20vh;
+  width: 35vw;
   vertical-align: bottom;
+  background-image: url(./ivy.png);
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+  text-shadow: 1px 1px 10px #000, 1px 1px 10px #000;
 }
 
 .chatWrapper {
-  margin-top: 40px;
+  margin-top: 2vh;
   display: grid;
   grid-template-rows: 60% 40%;
   width: 50vw;
-  /* height: 50%; */
   position: absolute;
-  left: 25%;
+  left: 25vw;
 }
 
 .errmsg {

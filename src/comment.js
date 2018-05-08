@@ -28,6 +28,7 @@ class Comment extends React.Component {
     console.log("Comment Box opening");
     this.commentBoxVisible = !this.commentBoxVisible;
   }
+
   render() {
     if (!this.props) {
       console.log("this im render der comment comp", this.props);
@@ -45,6 +46,7 @@ class Comment extends React.Component {
               />
             </div>
             <button
+              className="comBtn"
               type="submit"
               onClick={() =>
                 this.props.dispatch(
@@ -55,11 +57,14 @@ class Comment extends React.Component {
               Send comment
             </button>
           </div>
+
           <div className="commentsBox">
+            {this.file && <img src={this.file} />}
+
             {this.props.allComments &&
               this.props.allComments.map(userComments => {
                 return (
-                  <div key={userComments.id} className="userComments">
+                  <div key={userComments.timesent} className="userComments">
                     <div className="userNameComment">
                       {" "}
                       {userComments.first}

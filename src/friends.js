@@ -85,8 +85,9 @@ class Friends extends React.Component {
           {pendingReqList}
         </div>
         <div className="noFriendsContainer">
-          <h2>Other plant-lovers you might want to connect with</h2>
-
+          <div className="chatHeadline">
+            <h2>Other plant-lovers you might want to connect with</h2>
+          </div>
           {this.props.noFriendshipStatus &&
             this.props.noFriendshipStatus.map(noStatusUser => {
               return (
