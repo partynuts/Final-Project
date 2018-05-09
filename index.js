@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const { hashPassword, checkPassword } = require("./bcrypt");
 const server = require("http").Server(app);
 const io = require("socket.io")(server, {
-  origins: "localhost:8080 || "
+  origins: "localhost:8080 || https://swapplants.herokuapp.com:*"
 });
 
 const {
