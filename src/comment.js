@@ -8,9 +8,16 @@ class Comment extends React.Component {
   constructor(props) {
     console.log("props in cons", props);
     super(props);
+
     this.userinput = "";
     this.lineBreaks = "";
     this.commentBoxVisible = false;
+    // this.img = null;
+    this.state = {
+      url: ""
+    };
+    this.display = this.display.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
   componentDidMount() {
     console.log("thisCOMMENT", this);
@@ -28,6 +35,32 @@ class Comment extends React.Component {
     console.log("Comment Box opening");
     this.commentBoxVisible = !this.commentBoxVisible;
   }
+  // getUrl() {
+  //   const url = prompt("Enter image URL");
+  //
+  //   if (url) {
+  //     // Do string and URL validation here and also for image type
+  //     // let img = url;
+  //     this.img = url;
+  //     console.log("image url", this.img);
+  //
+  //     // let slider = document.getElementById("slider")[0];
+  //     // slider.push(img);
+  //     // slider.insertBefore(img, document.getElementById("img")[0]);
+  //   } else {
+  //     return getUrl();
+  //   } //`.slider image.src = getUrl();`
+  // }
+
+  handleChange(e) {
+    // const url = prompt("Enter image URL");
+    this.setState({
+      url: e.target.value
+    });
+  }
+  display() {
+    return this.url;
+  }
 
   render() {
     if (!this.props) {
@@ -38,7 +71,7 @@ class Comment extends React.Component {
       return (
         <div>
           <div className="commentBox">
-            <h1 onClick={() => this.toggleComment()}>Hellooooo</h1>
+            <h1 onClick={() => this.toggleComment()} />
             <div>
               <textarea
                 className="commentTextarea"
@@ -59,10 +92,17 @@ class Comment extends React.Component {
           </div>
 
           <div className="commentsBox">
-            {this.file && <img src={this.file} />}
-
             {this.props.allComments &&
               this.props.allComments.map(userComments => {
+                if (
+                  userComments.comment.includes(".png") ||
+                  userComments.comment.includes(".gif") ||
+                  userComments.comment.includes(".jpg") ||
+                  userComments.comment.includes(".jpeg")
+                ) {
+                  userComments.commentpic = userComments.comment;
+                  userComments.comment = "";
+                }
                 return (
                   <div key={userComments.timesent} className="userComments">
                     <div className="userNameComment">
@@ -71,12 +111,14 @@ class Comment extends React.Component {
                       {userComments.last}
                     </div>
                     <div className="timeSent">{userComments.timesent}</div>
+
                     <div
                       className="commentText"
                       onChange={e => this.lineBreaks(e)}
                     >
                       {userComments.comment}
                     </div>
+                    <img id="img" src={userComments.commentpic} />
                   </div>
                 );
               })}
