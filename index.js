@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const { hashPassword, checkPassword } = require("./bcrypt");
 const server = require("http").Server(app);
 const io = require("socket.io")(server, {
-  origins: "localhost:8080 || 192.168.50.156:8080"
+  origins: "localhost:8080 || "
 });
 
 const {
@@ -474,11 +474,6 @@ app.get("/otherUsers", function(req, res) {
   });
 });
 
-// app.get("/", function(req, res) {
-//   // just a normal route
-//   res.sendStatus(200);
-// });
-
 app.get("/logout", (req, res) => {
   console.log("logout route");
   req.session.user = null;
@@ -493,6 +488,4 @@ app.get("*", function(req, res) {
   }
 });
 
-server.listen(8080, function() {
-  console.log("I'm listening.");
-});
+server.listen(process.env.PORT || 8080);
