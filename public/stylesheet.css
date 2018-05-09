@@ -188,14 +188,14 @@ vertical-align: middle;
 }
 
 .picDiv {
-  width: 15vh;
+  width: 10vh;
   display: flex;
   float: right;
-  height: 15vh;
-  margin-right: 5%;
+  height: 10vh;
+  margin-right: 1vw;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
+  border-radius: 50vh;
   overflow: hidden;
 }
 
@@ -217,10 +217,10 @@ vertical-align: middle;
 }
 
 .icon {
-  width: 20px;
+  width: 1vw;
   /* text-align: center; */
   display: inline-table;
-  right: 12vw;
+  right: 9vw;
   top: 9vh;
   position: absolute;
 }
@@ -442,7 +442,7 @@ textarea {
 
 .commentsBox {
   /* border-style: inset; */
-  width: 760px;
+  width: 45vw;
   height: 53vh;
   overflow: scroll;
   position: relative;
@@ -451,7 +451,7 @@ textarea {
 .userComments {
   border: 1px solid teal;
   border-radius: 1vh;
-  width: 46vw;
+  width: 43vw;
   margin: 2vh 0;
   color: teal;
   background-color: rgb(234, 245, 239);
@@ -710,7 +710,7 @@ h2 {
   background-color: rgba(238, 238, 238, 0.8);
   width: 20vw;
   height: 70vh;
-  right: -42px;
+  right: -21vw;
   position: absolute;
   border-radius: 3%;
   padding-top: 1%;

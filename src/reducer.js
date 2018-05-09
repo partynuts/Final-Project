@@ -59,19 +59,22 @@ export default function reducer(state = {}, action) {
   }
   if (action.type == "SEND_COMMENT") {
     console.log("Send in reducer", action.commentText);
+    console.log("state in sending com", state);
+    let { allComments } = state;
+    let { commentText } = action;
+    commentText.key = new Date();
+
     return {
       ...state,
-      commentText: action.commentText,
-      userId: action.userId
+      allComments: state.allComments
+        .reverse()
+        .concat(commentText)
+        .reverse()
     };
   }
   if (action.type == "GET_ALL_COMMENTS") {
     console.log("getting comments from db", action.allComments);
 
-    if (action.commentText) {
-      let allComments = action.allComments;
-      allComments.push(action.commentText);
-    }
     return {
       ...state,
       allComments: action.allComments

@@ -329,22 +329,22 @@ app.post("/comment", function(req, res) {
   if (req.body) {
     insertComments(req.body.commentText, req.session.user.id, req.body.userId)
       .then(function(result) {
-        displayComments(req.params.receivingUserId).then(function(results) {
-          console.log("in get comments route", result);
+        console.log(result);
+        displayComments(req.body.userId).then(function(results) {
+          let last = results.rowCount - 1;
+          console.log("in get comments route", results.rows[0]);
           results.rows.forEach(item => {
             let date = new Date(item.timesent);
             item.timesent = date.toLocaleString();
           });
-        });
+          console.log("results in gettin g comments", result.rows);
+          res.json({
+            success: true,
+            wallData: results.rows[0]
+          });
 
-        console.log("results in gettin g comments", results.rows);
-        res.json({
-          success: true,
-          wallData: results.rows,
-          commentText: result.rows[0]
-
-          // comment: result.rows[0].comment,
           // username: result.rows[0].username
+          // comment: result.rows[0].comment,
         });
       })
       .catch(e => {

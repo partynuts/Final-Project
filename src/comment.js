@@ -35,22 +35,10 @@ class Comment extends React.Component {
     console.log("Comment Box opening");
     this.commentBoxVisible = !this.commentBoxVisible;
   }
-  // getUrl() {
-  //   const url = prompt("Enter image URL");
-  //
-  //   if (url) {
-  //     // Do string and URL validation here and also for image type
-  //     // let img = url;
-  //     this.img = url;
-  //     console.log("image url", this.img);
-  //
-  //     // let slider = document.getElementById("slider")[0];
-  //     // slider.push(img);
-  //     // slider.insertBefore(img, document.getElementById("img")[0]);
-  //   } else {
-  //     return getUrl();
-  //   } //`.slider image.src = getUrl();`
-  // }
+
+  componentDidUpdate() {
+    this.commentTextArea.value = "";
+  }
 
   handleChange(e) {
     // const url = prompt("Enter image URL");
@@ -74,6 +62,8 @@ class Comment extends React.Component {
             <h1 onClick={() => this.toggleComment()} />
             <div>
               <textarea
+                id="commentTextArea"
+                ref={area => (this.commentTextArea = area)}
                 className="commentTextarea"
                 onChange={e => this.compileInput(e)}
               />
@@ -104,7 +94,7 @@ class Comment extends React.Component {
                   userComments.comment = "";
                 }
                 return (
-                  <div key={userComments.timesent} className="userComments">
+                  <div key={userComments.key} className="userComments">
                     <div className="userNameComment">
                       {" "}
                       {userComments.first}

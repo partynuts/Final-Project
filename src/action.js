@@ -96,22 +96,21 @@ exports.getAllComments = getAllComments;
 function sendComment(commentText, userId) {
   console.log("comment sending fn firing");
   console.log("this commentTetx", commentText, userId);
-  axios
+  return axios
     .post("/comment", {
       commentText: commentText,
       userId: userId
     })
     .then(resp => {
       console.log("resp SendComment", resp);
-      return {
-        type: "GET_ALL_COMMENTS",
-        commentText: resp.data.wallData,
-        userId
-      };
+      // return {
+      //   type: "GET_ALL_COMMENTS",
+      //   commentText: resp.data.wallData,
+      //   userId: resp.data.wallData.userId
+      // };
       return {
         type: "SEND_COMMENT",
-        commentText: resp.data.commentText,
-        userId
+        commentText: resp.data.wallData
       };
     });
 }
