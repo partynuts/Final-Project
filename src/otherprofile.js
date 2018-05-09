@@ -79,11 +79,17 @@ export class OtherProfile extends React.Component {
   }
 
   render() {
+    let pic = this.state.profilepic;
+    if (!pic) {
+      pic = "../defaultAvatar2.png";
+    } else {
+      pic = this.state.profilepic;
+    }
     console.log("props in otheruser", this.state);
     return (
       <div className="userProf">
         <div className="profileBox">
-          <img id="profPicBig" src={this.state.profilePic} />
+          <img id="profPicBig" src={pic} />
         </div>
         <div>{this.state.id && <Friendship {...this.state} />}</div>
         <div className="bioBox">
