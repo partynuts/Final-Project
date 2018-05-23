@@ -33,6 +33,7 @@ class Chat extends React.Component {
                     <div className="chatPic">
                       {msg.profPic && <img src={msg.profPic} />}
                       {!msg.profPic && <img src="../defaultAvatar2.png" />}
+                      // <img src={msg.profPic || "./defaultAvatar2"} />
                     </div>
                     <div className="chatUser">
                       {msg.first} {msg.last}

@@ -79,11 +79,19 @@ export class OtherProfile extends React.Component {
   }
 
   render() {
+<<<<<<< HEAD
     let pic = this.state.profilePic;
     if (!pic) {
       pic = "../defaultAvatar2.png";
     } else {
       pic = this.state.profilePic;
+=======
+    let pic = this.state.profilepic;
+    if (!pic) {
+      pic = "../defaultAvatar2.png";
+    } else {
+      pic = this.state.profilepic;
+>>>>>>> 74edf0da018b860a252911e749a28ee57536031e
     }
     console.log("props in otheruser", this.state);
     return (
