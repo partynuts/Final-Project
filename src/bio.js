@@ -18,8 +18,8 @@ console.log("props inside of bio", props);
         {props.bioBoxVisible &&
           <div>
             <textarea name="bio" onChange={props.setBio} value={props.bio || ''}></textarea>
-          
-            <button type="submit" onClick={props.changeBio}>Change</button>
+
+            <button className="bioChangeBtn" type="submit" onClick={props.changeBio}>Change story</button>
           </div>
         }
 

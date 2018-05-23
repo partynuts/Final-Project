@@ -226,9 +226,9 @@ vertical-align: middle;
 }
 
 .menuBar {
-  background-color: rgba(238, 238, 238, 0.9);
+  background-color: rgba(238, 238, 238, 1);
   /* width: 300px; */
-  height: 9vh;
+  height: 7vh;
   z-index: 10;
   transition: all 0.5s ease-in-out 0.5s;
   position: absolute;
@@ -237,10 +237,21 @@ vertical-align: middle;
   list-style: none;
   display: flex;
   justify-content: space-around;
-  right: 14vw;
-  top: 9vh;
-  transform: translateY(0%);
-  transition-delay: 0s, 0s, 0.3s;
+  right: 11vw;
+  top: 5vh;
+  overflow: hidden;
+  animation: moveFromRight 500ms ease-in-out;
+}
+
+@keyframes moveFromRight {
+    from {
+
+        width: 0;
+    }
+    to {
+
+        width: 230px;
+    }
 }
 
 .headerMenuLinks {
@@ -279,6 +290,17 @@ vertical-align: middle;
 
 #bioEdit:hover {
   cursor: pointer;
+}
+
+.bioChangeBtn {
+  border-radius: 3vh;
+  background-color: teal;
+  font-weight: bolder;
+}
+
+.bioChangeBtn:hover {
+  cursor: pointer;
+  background-color: aqua;
 }
 
 #profPic {
@@ -490,6 +512,11 @@ textarea {
   border-radius: 3vh;
   background-color: teal;
   font-weight: bolder;
+}
+
+.comBtn:hover {
+  cursor: pointer;
+  background-color: aqua;
 }
 
 #comment {
@@ -807,8 +834,8 @@ h2 {
   /* background-image: url(./ivy.png); */
   font-weight: bold;
   font-size: 18px;
-  color: white;
-  text-shadow: 1px 1px 10px #000, 1px 1px 10px #000;
+  color: teal;
+  /* text-shadow: 1px 1px 10px #000, 1px 1px 10px #000; */
 }
 
 .chatWrapper {

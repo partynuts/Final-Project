@@ -32,6 +32,7 @@ export class Profile extends React.Component {
 
         <div className="menuLinksDiv" />
         <div className="icon">
+          
           <i
             className="fa fa-caret-down"
             aria-hidden="true"
