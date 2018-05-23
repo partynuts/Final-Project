@@ -16,8 +16,10 @@ export function Uploader(props) {
         x
       </span>
       <div className="uploadBox">
-        <input type="file" onChange={props.setFile} />
         <img id="modalImg" src={newPic} />
+
+          <input type="file" className="inputfile" onChange={props.setFile} />
+
         <button className="submitBtn" type="submit" onClick={props.changeImage}>
           {" "}
           Submit{" "}
