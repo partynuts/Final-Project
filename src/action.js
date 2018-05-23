@@ -7,12 +7,25 @@ function getFriendsAndRequests() {
     console.log("response friendslist", response);
     return {
       type: "GET_FRIENDS_AND_REQUESTS",
-      friends: response.data.friends
+      friends: response.data.friends,
+      selfUserId: response.data.selfUserId
     };
   });
 }
 
 exports.getFriendsAndRequests = getFriendsAndRequests;
+
+function makeFriendRequest(id) {
+  console.log("id: making FR", id);
+  return axios.post("/makeFriendship/" + id).then(function(response) {
+    return {
+      type: "MAKE_FRIENDS",
+      id
+    }
+  })
+}
+
+exports.makeFriendRequest = makeFriendRequest;
 
 function acceptFriendRequest(id) {
   console.log("id", id);

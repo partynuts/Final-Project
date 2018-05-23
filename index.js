@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const { hashPassword, checkPassword } = require("./bcrypt");
 const server = require("http").Server(app);
 const io = require("socket.io")(server, {
-  origins: "localhost:8080 || https://swapplants.herokuapp.com:*"
+  origins: "*:*"
 });
 
 const {
@@ -458,7 +458,8 @@ app.get("/friends", function(req, res) {
   pullFriendsList(req.session.user.id).then(function(results) {
     console.log("resukts", results);
     res.json({
-      friends: results.rows
+      friends: results.rows,
+      selfUserId: req.session.user.id
     });
   });
 });

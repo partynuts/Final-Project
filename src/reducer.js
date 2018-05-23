@@ -1,12 +1,27 @@
 export default function reducer(state = {}, action) {
   if (action.type == "GET_FRIENDS_AND_REQUESTS") {
-    state = Object.assign({}, state, { friends: action.friends });
+    console.log("FR and Friends", action.friends);
+    state = Object.assign({}, state, { friends: action.friends }, {selfUserId: action.selfUserId});
   }
   if (action.type == "GET_OTHERS") {
     console.log("OTHER ACTIONS", action.others);
     // const { others } = action;
     state = Object.assign({}, state, { noFriendshipStatus: action.others });
   }
+if (action.type == "MAKE_FRIENDS") {
+const newFriends = state.noFriendshipStatus.filter(user => {
+  return user.id == action.id
+})
+let newFriend = newFriends[0]
+newFriend.status = 1;
+return Object.assign({}, state, {
+  friends: [...state.friends, newFriend],
+  noFriendshipStatus: state.noFriendshipStatus.filter(user => {
+    return user.id != action.id
+  })
+})
+}
+
   if (action.type == "ACCEPT_FRIENDS") {
     console.log("action", action);
     state = Object.assign({}, state, {
@@ -21,15 +36,18 @@ export default function reducer(state = {}, action) {
   }
   if (action.type == "END_FRIENDSHIP") {
     console.log("action", action);
-    state = Object.assign({}, state, {
-      friends: state.friends.map(items => {
-        if (items.id == action.id) {
-          return Object.assign({}, items, { status: null });
-        } else {
-          return Object.assign({}, items);
-        }
-      })
-    });
+    const noFriends = state.friends.filter(item => {
+      return item.id == action.id
+    })
+let noFriend = noFriends[0];
+state = Object.assign({}, state, {
+  noFriendshipStatus: [ noFriend, ...state.noFriendshipStatus],
+  friends: state.friends.filter(items => {
+    return items.id != action.id
+  })
+})
+
+
   }
   if (action.type == "GET_ONLINE_USERS") {
     console.log("getting online users");

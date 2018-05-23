@@ -5,7 +5,7 @@ import {
   getFriendsAndRequests,
   acceptFriendRequest,
   endFriendship,
-  getOtherUsers
+  getOtherUsers, makeFriendRequest
 } from "./action";
 import { Link } from "react-router-dom";
 
@@ -35,14 +35,28 @@ class Friends extends React.Component {
             <img className="profPicFriends" src={pic} />{" "}
           </Link>
           {pendingRequest.first} {pendingRequest.last}
-          <button
-            className="friendsBtn"
-            onClick={() =>
-              this.props.dispatch(acceptFriendRequest(pendingRequest.id))
-            }
-          >
-            Accept friend request
-          </button>
+          {pendingRequest.sender_id == this.props.selfUserId &&
+
+            <button
+              className="friendsBtn"
+              onClick={() =>
+                this.props.dispatch(acceptFriendRequest(pendingRequest.id))
+              }
+              >
+              Accept friend request
+            </button>
+          }
+          {pendingRequest.sender_id != this.props.selfUserId &&
+
+            <button
+              className="friendsBtn"
+              onClick={() =>
+                this.props.dispatch(endFriendship(pendingRequest.id))
+              }
+              >
+              Cancel friend request
+            </button>
+          }
         </div>
       );
     });
@@ -122,7 +136,8 @@ const mapStateToProps = function(state) {
       state.friends && state.friends.filter(friends => friends.status == 1),
     acceptedFriends:
       state.friends && state.friends.filter(friends => friends.status == 2),
-    noFriendshipStatus: state.noFriendshipStatus
+    noFriendshipStatus: state.noFriendshipStatus && state.noFriendshipStatus.filter(noFriends => noFriends.id != state.selfUserId),
+    selfUserId: state.selfUserId
   };
 };
 

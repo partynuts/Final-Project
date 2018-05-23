@@ -137,10 +137,11 @@ exports.acceptFriendship = acceptFriendship;
 
 function pullFriendsList(user_id) {
   return db.query(
-    `SELECT users.id, first, last, profilePic, status
+    `SELECT users.id, first, last, profilePic, status, sender_id
     FROM friendships
     JOIN users
     ON (status = 1 AND receiver_id = $1 AND sender_id = users.id)
+    OR (status = 1 AND sender_id = $1 AND receiver_id = users.id)
     OR (status = 2 AND receiver_id = $1 AND sender_id = users.id)
     OR (status = 2 AND sender_id = $1 AND receiver_id = users.id)`,
     [user_id]
