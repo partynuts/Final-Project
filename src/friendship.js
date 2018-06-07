@@ -13,9 +13,7 @@ export class Friendship extends React.Component {
   }
 
   componentDidMount() {
-    console.log("in friendship Component setting status");
-    console.log("props", this);
-    axios
+      axios
       .get("/friendship/" + this.props.id)
       .then(response => {
         console.log("response fr", response);
@@ -52,7 +50,7 @@ export class Friendship extends React.Component {
             friendshipStatus: 1
           });
         } else {
-          console.log("Something is wrong");
+          console.log("Error in makeFriendship");
         }
       })
       .catch(e => {
@@ -69,7 +67,7 @@ export class Friendship extends React.Component {
             friendshipStatus: null
           });
         } else {
-          console.log("Not working");
+          console.log("Cancel Friendship not working");
         }
       })
       .catch(e => {

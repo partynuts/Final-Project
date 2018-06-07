@@ -6,13 +6,11 @@ import { reducer } from "./reducer";
 
 class Comment extends React.Component {
   constructor(props) {
-    console.log("props in cons", props);
     super(props);
 
     this.userinput = "";
     this.lineBreaks = "";
     this.commentBoxVisible = false;
-    // this.img = null;
     this.state = {
       url: ""
     };
@@ -20,7 +18,6 @@ class Comment extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
   componentDidMount() {
-    console.log("thisCOMMENT", this);
     this.props.dispatch(getAllComments(this.props.receivingUserId));
   }
   compileInput(e) {
@@ -32,7 +29,6 @@ class Comment extends React.Component {
     }
   }
   toggleComment() {
-    console.log("Comment Box opening");
     this.commentBoxVisible = !this.commentBoxVisible;
   }
 
@@ -41,7 +37,6 @@ class Comment extends React.Component {
   }
 
   handleChange(e) {
-    // const url = prompt("Enter image URL");
     this.setState({
       url: e.target.value
     });
@@ -52,10 +47,8 @@ class Comment extends React.Component {
 
   render() {
     if (!this.props) {
-      console.log("this im render der comment comp", this.props);
       return null;
     } else {
-      console.log("this im render der comp", this);
       return (
         <div>
           <div className="commentBox">

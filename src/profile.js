@@ -23,7 +23,6 @@ export class Profile extends React.Component {
       pic = this.props.profilePic;
     }
 
-    console.log(this.props);
     return (
       <div>
         <div className="welcomeDiv" id="welcome">
@@ -32,7 +31,7 @@ export class Profile extends React.Component {
 
         <div className="menuLinksDiv" />
         <div className="icon">
-          
+
           <i
             className="fa fa-caret-down"
             aria-hidden="true"

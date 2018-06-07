@@ -14,19 +14,15 @@ export class OtherProfile extends React.Component {
   }
 
   componentDidMount() {
-    console.log("other profile mounted!");
     axios
       .get("/get-user/" + this.props.match.params.userId)
       .then(response => {
-        console.log("data self", response.data);
         if (
           response.data.success == false &&
           response.data.id == response.data.self
         ) {
-          // this.setState({ sameProfile: response.data.sameProfile });
           this.props.history.push("/");
         } else if (response.data.success) {
-          console.log("response data in get otherprofile", response.data);
           this.setState(
             {
               first: response.data.first,
@@ -41,7 +37,7 @@ export class OtherProfile extends React.Component {
             }
           );
         } else {
-          console.log("Not successful");
+          console.log("Get user was not successful");
         }
       })
       .catch(e => {
@@ -50,16 +46,13 @@ export class OtherProfile extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("component will receive props", nextProps);
     if (parseInt(nextProps.match.params.userId != this.state.id)) {
       axios
         .get("/get-user/" + nextProps.match.params.userId)
         .then(response => {
-          console.log("data self", response.data.self);
           if (response.data.id == response.data.self) {
             this.props.history.push("/");
           } else if (response.data.success) {
-            console.log("response data in get otherprofile", response.data);
             this.setState({
               first: response.data.first,
               last: response.data.last,
@@ -86,7 +79,6 @@ export class OtherProfile extends React.Component {
       pic = this.state.profilePic;
 
     }
-    console.log("props in otheruser", this.state);
     return (
       <div className="userProf">
         <div className="profileBox">

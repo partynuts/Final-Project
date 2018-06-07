@@ -3,7 +3,6 @@ import axios from "../axios";
 
 
 export function Bio(props) {
-console.log("props inside of bio", props);
 
 
   return (

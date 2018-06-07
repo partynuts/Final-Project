@@ -26,14 +26,12 @@ export class Home extends React.Component {
     // this.componentDidMount = this.componentDidMount.bind(this); ==> you do NOT bind life cycle functions
   }
   componentDidMount() {
-    console.log("mounted!!!!!!!!");
 
     axios
       .get("/userInfo")
       .then(response => {
         //wenn man eine arrow fn  benutzt, wird der "Inhalt" des this von der vorherigen funktion übernommen.
         if (response.data.success) {
-          console.log("response data", response.data);
           this.setState(
             {
               userData: response.data.userData,
@@ -44,7 +42,7 @@ export class Home extends React.Component {
             }
           );
         } else {
-          console.log("Errooooooor");
+          console.log("Error");
         }
       })
       .catch(e => {
@@ -54,23 +52,19 @@ export class Home extends React.Component {
 
   logout() {
     axios.get("/logout", this.state.userData.id).then(resp => {
-      console.log("logging out");
       location.pathname = "/logout";
     });
   }
 
   toggleMenu() {
-    console.log("menu opening?");
     this.setState({ menuVisible: !this.state.menuVisible });
   }
 
   showUploader() {
-    console.log("modal is closed");
     this.setState({ uploaderIsVisible: !this.state.uploaderIsVisible });
   }
 
   closeUploader() {
-    console.log("closing modal");
     this.setState({ uploaderIsVisible: false });
   }
 
@@ -81,7 +75,6 @@ export class Home extends React.Component {
       .post("/uploader", formData)
       .then(resp => {
         if (resp.data.success) {
-          // profillePic muss wieder in einem Objekt nämlich userData sein.
           this.setState(
             {
               userData: resp.data.userData

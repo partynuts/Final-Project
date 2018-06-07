@@ -42,7 +42,6 @@ function Onliners(props) {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     onliners: state.onliners
   };

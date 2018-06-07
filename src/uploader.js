@@ -2,7 +2,6 @@ import React from "react";
 import axios from "../axios";
 
 export function Uploader(props) {
-  console.log("props", props);
   let newPic = props.userData.profilepic;
   if (!props.selectedImage) {
     newPic = props.userData.profilepic;

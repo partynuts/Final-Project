@@ -3,13 +3,11 @@ import { Uploader } from "./uploader.js";
 import { Bio } from "./bio.js";
 import { Profile } from "./profile.js";
 import axios from "../axios";
-// import { Comment } from "./comment.js";
 import { Link } from "react-router-dom";
 import Onliners from "./onliners";
 
 export class Userprofile extends React.Component {
   constructor(props) {
-    console.log("props in userprofile", props);
     super(props);
 
     this.state = {
@@ -19,28 +17,23 @@ export class Userprofile extends React.Component {
     this.toggleBio = this.toggleBio.bind(this);
     this.changeBio = this.changeBio.bind(this);
     this.lineBreaks = this.lineBreaks.bind(this);
-    // this.sendComment = this.sendComment.bind(this);
   }
 
   componentDidMount() {
-    console.log("mounted in comments");
     axios
       .get("/userInfo")
       .then(response => {
-        //wenn man eine arrow fn  benutzt, wird der "Inhalt" des this von der vorherigen funktion übernommen.
         if (response.data.success) {
-          console.log("response data", response.data);
           this.setState(
             {
               userData: response.data.userData
-              // wallData: response.data.wallData
             },
             function() {
               console.log(this.state);
             }
           );
         } else {
-          console.log("Errooooooor");
+          console.log("Error");
         }
       })
       .catch(e => {

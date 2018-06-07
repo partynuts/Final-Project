@@ -1,911 +1,888 @@
 body {
-  background-size: cover;
-  background-color: rgb(238, 238, 238);
-  background: url("palmleave.jpg") no-repeat right fixed;
+    background-size: cover;
+    background-color: rgb(238, 238, 238);
+    background: url("palmleave.jpg") no-repeat right fixed;
 }
 
-/* color: 57, 91, 82 */
-
 .headings {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 30% 20% 50%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 30% 20% 50%;
 }
 
 .logo {
-  grid-column: 1;
-  grid-row: 3;
+    grid-column: 1;
+    grid-row: 3;
 }
 
 #logo {
-  max-width: 90%;
-  height: 440px;
-  padding-left: 10px;
+    max-width: 90%;
+    height: 440px;
+    padding-left: 10px;
 }
 
 h1 {
-  grid-row: 1;
-  grid-column: 1/3;
-  justify-self: center;
-  color: rgb(57, 91, 82);
-  font-size: 80px;
-  font-family: "Cookie", cursive;
-  margin: 0;
+    grid-row: 1;
+    grid-column: 1/3;
+    justify-self: center;
+    color: rgb(57, 91, 82);
+    font-size: 80px;
+    font-family: "Cookie", cursive;
+    margin: 0;
 }
 
 h3 {
-  grid-column: 2;
-  grid-row: 2;
-  justify-self: center;
-  color: rgb(55, 90, 80);
-  padding: 20px 6%;
-  text-align: start;
-  margin: 0;
-  font-family: arial;
-  text-shadow: 1px 1px 10px #fff, 1px 1px 10px #ccc;
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: center;
+    color: rgb(55, 90, 80);
+    padding: 20px 6%;
+    text-align: start;
+    margin: 0;
+    font-family: arial;
+    text-shadow: 1px 1px 10px #fff, 1px 1px 10px #ccc;
 }
 
 .forms {
-  grid-column: 2;
-  justify-self: center;
+    grid-column: 2;
+    justify-self: center;
 }
 
 .formContainer {
-  height: 98%;
+    height: 98%;
 }
 
 .form {
-  align-self: center;
-  display: flex;
-  justify-content: center;
-  width: 500px;
-  height: 80%;
-  padding: 40px 10px 0 10px;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    width: 500px;
+    height: 80%;
+    padding: 40px 10px 0 10px;
 }
 
 .inputs {
-  flex-wrap: wrap;
-  height: auto;
-  width: 300px;
+    flex-wrap: wrap;
+    height: auto;
+    width: 300px;
 }
 
 .inputs>div {
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
 }
 
-input[type="text"], input[type="password"], input[type="email"] {
-  width: 90%;
-  border: 2px solid gray;
-  /* background: transparent; */
-  position: relative;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  padding: 8px 12px;
-  outline: 0;
-  border-radius: 4px;
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 90%;
+    border: 2px solid gray;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    padding: 8px 12px;
+    outline: 0;
+    border-radius: 4px;
 }
 
 input:valid {
-  background: white;
+    background: white;
 }
 
 input+label {
-  color: #999;
-  font-size: 70%;
-  position: absolute;
-  color: #999;
+    color: #999;
+    font-size: 70%;
+    position: absolute;
+    color: #999;
 }
 
 input:focus+label {
-  color: #999;
-  font-size: 70%;
-  padding: 1px 6px;
-  z-index: 2;
-  text-transform: uppercase;
-  bottom: 65%;
+    color: #999;
+    font-size: 70%;
+    padding: 1px 6px;
+    z-index: 2;
+    text-transform: uppercase;
+    bottom: 65%;
 }
 
 label {
-  transition: color 0.2s bottom 0.2s, right 0.2s, left 0.2s;
-  position: absolute;
-  color: #999;
-  padding: 7px 6px;
+    transition: color 0.2s bottom 0.2s, right 0.2s, left 0.2s;
+    position: absolute;
+    color: #999;
+    padding: 7px 6px;
 }
 
-input[type="text"], input[type="password"], input[type="email"] {
-  padding: 12px 6px 12px 12px;
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    padding: 12px 6px 12px 12px;
 }
 
 label {
-  bottom: 10%;
-  left: 0;
-  width: 100%;
-  font-family: arial;
+    bottom: 10%;
+    left: 0;
+    width: 100%;
+    font-family: arial;
 }
 
 input:focus::placeholder {
-  color: transparent;
+    color: transparent;
 }
 
 input:focus {
-  padding: 23px 6px 12px 6px;
+    padding: 23px 6px 12px 6px;
 }
 
 .redirect {
-  font-family: arial;
-  font-size: 20px;
-  width: auto;
-  height: auto;
-  color: rgb(57, 91, 82);
-  text-align: center;
-  font-weight: bold;
-  text-shadow: 1px 1px 10px #fff, 1px 1px 10px #ccc;
+    font-family: arial;
+    font-size: 20px;
+    width: auto;
+    height: auto;
+    color: rgb(57, 91, 82);
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 1px 1px 10px #fff, 1px 1px 10px #ccc;
 }
 
 .submitBtn {
-  border-radius: 5vh;
-  width: 98%;
-  height: 30px;
-  font-size: 15px;
-  font-weight: bolder;
-  background-color: teal;
+    border-radius: 5vh;
+    width: 98%;
+    height: 30px;
+    font-size: 15px;
+    font-weight: bolder;
+    background-color: teal;
 }
 
 .submitBtn:hover {
-  cursor: pointer;
-  background-color: #92644a;
+    cursor: pointer;
+    background-color: #92644a;
 }
 
-/* .headRight {
-  display: table-cell;
-width: 30%;
-vertical-align: middle;
-} */
-
 .headerProfile {
-  display: table;
-  width: 100%;
-  background-color: rgb(60, 133, 131);
-  border-bottom: solid 2px teal;
+    display: table;
+    width: 100%;
+    background-color: rgb(60, 133, 131);
+    border-bottom: solid 2px teal;
 }
 
 .headerProfile>div {
-  display: table-cell;
-  width: 30%;
-  vertical-align: middle;
+    display: table-cell;
+    width: 30%;
+    vertical-align: middle;
 }
 
 .menuLinksDiv {
-  display: inline-table;
-  float: left;
+    display: inline-table;
+    float: left;
 }
 
 .picDiv {
-  width: 10vh;
-  display: flex;
-  float: right;
-  height: 10vh;
-  margin-right: 1vw;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50vh;
-  overflow: hidden;
+    width: 10vh;
+    display: flex;
+    float: right;
+    height: 10vh;
+    margin-right: 1vw;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50vh;
+    overflow: hidden;
 }
 
 .small {
-  max-height: 100px;
-  padding-left: 10px;
-  width: auto;
+    max-height: 100px;
+    padding-left: 10px;
+    width: auto;
 }
 
 #welcome {
-  display: inline-block;
-  text-align: left;
-  color: rgb(36, 73, 84);
-  /* color: teal; */
-  font-size: 34px;
-  font-family: "Cookie", cursive;
-  width: 70%;
-  font-weight: bolder;
+    display: inline-block;
+    text-align: left;
+    color: rgb(36, 73, 84);
+    font-size: 34px;
+    font-family: "Cookie", cursive;
+    width: 70%;
+    font-weight: bolder;
 }
 
 .icon {
-  width: 1vw;
-  /* text-align: center; */
-  display: inline-table;
-  right: 9vw;
-  top: 9vh;
-  position: absolute;
+    width: 1vw;
+    display: inline-table;
+    right: 9vw;
+    top: 9vh;
+    position: absolute;
 }
 
 .fa-caret-down:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .menuBar {
-  background-color: rgba(238, 238, 238, 1);
-  /* width: 300px; */
-  height: 7vh;
-  z-index: 10;
-  transition: all 0.5s ease-in-out 0.5s;
-  position: absolute;
-  border: solid 1px teal;
-  /* border-radius: 10%; */
-  list-style: none;
-  display: flex;
-  justify-content: space-around;
-  right: 11vw;
-  top: 5vh;
-  overflow: hidden;
-  animation: moveFromRight 500ms ease-in-out;
+    background-color: rgba(238, 238, 238, 1);
+    /* width: 300px; */
+    height: 7vh;
+    z-index: 10;
+    transition: all 0.5s ease-in-out 0.5s;
+    position: absolute;
+    border: solid 1px teal;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    right: 11vw;
+    top: 5vh;
+    overflow: hidden;
+    animation: moveFromRight 500ms ease-in-out;
 }
 
 @keyframes moveFromRight {
     from {
-
         width: 0;
     }
     to {
-
         width: 230px;
     }
 }
 
 .headerMenuLinks {
-  text-decoration: underline;
-  vertical-align: center;
-  font-family: arial;
-  color: purple;
-  font-size: 13px;
-  font-weight: bolder;
-  padding: 0px 18px;
-  align-self: center;
+    text-decoration: underline;
+    vertical-align: center;
+    font-family: arial;
+    color: purple;
+    font-size: 13px;
+    font-weight: bolder;
+    padding: 0px 18px;
+    align-self: center;
 }
 
 .headerMenuLinks:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .changeProfPic {
-  font-size: 13px;
-  text-align: center;
-  padding-right: 1vw;
-  text-decoration: underline;
-  color: purple;
+    font-size: 13px;
+    text-align: center;
+    padding-right: 1vw;
+    text-decoration: underline;
+    color: purple;
 }
 
 #bioEdit {
-  display: inline-block;
-  font-family: arial;
-  color: teal;
-  font-size: 15px;
-  text-align: right;
-  margin-top: 2vh;
-  text-decoration: underline;
-  color: blue;
+    display: inline-block;
+    font-family: arial;
+    color: teal;
+    font-size: 15px;
+    text-align: right;
+    margin-top: 2vh;
+    text-decoration: underline;
+    color: blue;
 }
 
 #bioEdit:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .bioChangeBtn {
-  border-radius: 3vh;
-  background-color: teal;
-  font-weight: bolder;
+    border-radius: 3vh;
+    background-color: teal;
+    font-weight: bolder;
 }
 
 .bioChangeBtn:hover {
-  cursor: pointer;
-  background-color: aqua;
+    cursor: pointer;
+    background-color: aqua;
 }
 
 #profPic {
-  height: 15vh;
-  /* margin-right: 1vw; */
-  display: inline-block;
+    height: 15vh;
+    display: inline-block;
 }
 
 #profPic:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .uploadModal {
-  position: fixed;
-  z-index: 20;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  left: 25vw;
-  top: 7vh;
-  width: 50vw;
-  height: 75vh;
-  background-color: rgba(255, 255, 255, 1);
-  border: solid 2px teal;
-  border-radius: 5vw;
-  box-shadow: 10px 10px 8px #888888;
+    position: fixed;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    left: 25vw;
+    top: 7vh;
+    width: 50vw;
+    height: 75vh;
+    background-color: rgba(255, 255, 255, 1);
+    border: solid 2px teal;
+    border-radius: 5vw;
+    box-shadow: 10px 10px 8px #888888;
 }
 
 .uploadBox {
-  width: 20vw;
-height: 50vh;
-margin-top: 10%;
-display: grid;
-justify-content: center;
+    width: 20vw;
+    height: 50vh;
+    margin-top: 10%;
+    display: grid;
+    justify-content: center;
 }
 
 .closeBtn {
-  padding: 10px 10px;
-  font-size: 27px;
-  font-weight: bold;
-  height: 20px;
-  width: 20px;
-  right: 5vw;
-  text-align: center;
-  top: 3vh;
-  position: absolute;
-  color: teal;
+    padding: 10px 10px;
+    font-size: 27px;
+    font-weight: bold;
+    height: 20px;
+    width: 20px;
+    right: 5vw;
+    text-align: center;
+    top: 3vh;
+    position: absolute;
+    color: teal;
 }
 
 .closeBtn:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 #modalImg {
-  max-width: 20vw;
-  height: 40vh;
-  margin: 10px 0;
+    max-width: 20vw;
+    height: 40vh;
+    margin: 10px 0;
 }
 
 .userProf {
-  display: grid;
-  grid-template-columns: 30% 50% 20%;
-  grid-template-rows: 60% 40%;
+    display: grid;
+    grid-template-columns: 30% 50% 20%;
+    grid-template-rows: 60% 40%;
 }
 
 .profileBox {
-  grid-column: 1;
-  grid-row: 1;
-  margin: 10px 10px;
-  width: 50vh;
-  height: 50vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  border-radius: 50vh;
+    grid-column: 1;
+    grid-row: 1;
+    margin: 10px 10px;
+    width: 50vh;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 50vh;
 }
 
 .bioBox {
-  grid-row: 2;
-  margin: 0px 5px;
-  margin-left: 1vw;
-  border: solid 1px teal;
-  height: 24vh;
-  border-radius: 1vh;
-  padding: 0 1vw;
-  /* background-image: url("./ivy.png"); */
+    grid-row: 2;
+    margin: 0px 5px;
+    margin-left: 1vw;
+    border: solid 1px teal;
+    height: 24vh;
+    border-radius: 1vh;
+    padding: 0 1vw;
 }
 
 #profPicBig {
-  justify-self: center;
-  align-self: center;
-  max-height: 50vh;
-  width: auto;
+    justify-self: center;
+    align-self: center;
+    max-height: 50vh;
+    width: auto;
 }
 
 #profPicBig:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .bioContent {
-  padding-top: 1vh;
-  font-family: arial;
-  color: teal;
-  font-size: 18px;
-  font-weight: bolder;
-  margin-bottom: 15px;
+    padding-top: 1vh;
+    font-family: arial;
+    color: teal;
+    font-size: 18px;
+    font-weight: bolder;
+    margin-bottom: 15px;
 }
 
 textarea {
-  width: 20vw;
-  height: 20vh;
-  font-family: arial;
-  color: rgb(57, 91, 82);
-  font-size: 15px;
+    width: 20vw;
+    height: 20vh;
+    font-family: arial;
+    color: rgb(57, 91, 82);
+    font-size: 15px;
 }
 
 #bioEdit {
-  color: purple;
-  cursor: pointer;
-  font-weight: bold;
+    color: purple;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 .bioText {
-  padding-top: 1vh;
-  font-family: arial;
-  color: rgb(57, 91, 82);
-  font-size: 14px;
-  font-weight: bolder;
-  width: 25vw;
-  max-height: 34vh;
-  white-spac: pre-line;
-  text-align: justify;
+    padding-top: 1vh;
+    font-family: arial;
+    color: rgb(57, 91, 82);
+    font-size: 14px;
+    font-weight: bolder;
+    width: 25vw;
+    max-height: 34vh;
+    white-spac: pre-line;
+    text-align: justify;
 }
 
 .wall {
-  grid-column: 2;
-  grid-row: 1/3;
-  width: 48vw;
-  /* height: 50vh; */
-  margin: 10px 10px;
-  position: relative;
-  /* border-style: solid; */
+    grid-column: 2;
+    grid-row: 1/3;
+    width: 48vw;
+    margin: 10px 10px;
+    position: relative;
 }
 
 .wallPosts {
-  font-family: arial;
-  color: rgb(57, 91, 82);
-  font-size: 20px;
-  font-weight: bolder;
+    font-family: arial;
+    color: rgb(57, 91, 82);
+    font-size: 20px;
+    font-weight: bolder;
 }
 
 .commentTextarea {
-  width: 400px;
-  height: 50px;
+    width: 400px;
+    height: 50px;
 }
 
 .commentBox {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 #img {
-  width: 20vw;
-  margin: 5px 10px;
-  border-radius: 3vh;
+    width: 20vw;
+    margin: 5px 10px;
+    border-radius: 3vh;
 }
 
 .commentsBox {
-  /* border-style: inset; */
-  width: 45vw;
-  height: 53vh;
-  overflow: scroll;
-  position: relative;
-  /* border-radius: 3vh; */
+    width: 45vw;
+    height: 53vh;
+    overflow: scroll;
+    position: relative;
 }
 
 .userComments {
-  border: 1px solid teal;
-  border-radius: 1vh;
-  width: 43vw;
-  margin: 2vh 0;
-  color: teal;
-  background-color: rgb(234, 245, 239);
-  font-family: arial;
+    border: 1px solid teal;
+    border-radius: 1vh;
+    width: 43vw;
+    margin: 2vh 0;
+    color: teal;
+    background-color: rgb(234, 245, 239);
+    font-family: arial;
 }
 
 .commentText {
-  white-space: pre-line;
-  /* font-weight: bolder; */
-  padding: 5px 5px;
-  font-size: 30px;
-  font-family: cookie, cursive;
+    white-space: pre-line;
+    padding: 5px 5px;
+    font-size: 30px;
+    font-family: cookie, cursive;
 }
 
 .userNameComment {
-  padding: 5px 5px;
-  display: inline-block;
+    padding: 5px 5px;
+    display: inline-block;
 }
 
 .timeSent {
-  display: inline-block;
-  color: lightgrey;
-  font-style: italic;
-  font-size: 12px;
-  margin-left: 5px;
+    display: inline-block;
+    color: lightgrey;
+    font-style: italic;
+    font-size: 12px;
+    margin-left: 5px;
 }
 
 .comBtn {
-  border-radius: 3vh;
-  background-color: teal;
-  font-weight: bolder;
+    border-radius: 3vh;
+    background-color: teal;
+    font-weight: bolder;
 }
 
 .comBtn:hover {
-  cursor: pointer;
-  background-color: aqua;
+    cursor: pointer;
+    background-color: aqua;
 }
 
 #comment {
-  color: purple;
-  cursor: pointer;
-  font-weight: bold;
-  text-decoration: underline;
+    color: purple;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 #comUN {
-  background-color: white;
-  font-family: arial;
-  color: rgb(57, 91, 82);
-  font-size: 15px;
+    background-color: white;
+    font-family: arial;
+    color: rgb(57, 91, 82);
+    font-size: 15px;
 }
 
 input[type="file"] {
-  color: transparent;
-  width: 130px;
-
+    color: transparent;
+    width: 130px;
 }
 
-
 .friends {
-  float: right;
-  font-weight: bold;
-  font-family: arial;
-  color: teal;
-  font-size: 18px;
+    float: right;
+    font-weight: bold;
+    font-family: arial;
+    color: teal;
+    font-size: 18px;
 }
 
 .list {
-  display: block;
+    display: block;
 }
 
 .friendshipBtn {
-  border-radius: 5vh;
-  width: 20vw;
-  grid-column: 3;
-  margin: 2vh 0;
-  height: 6vh;
-  font-size: 15px;
-  font-weight: bolder;
-  background-color: teal;
+    border-radius: 5vh;
+    width: 20vw;
+    grid-column: 3;
+    margin: 2vh 0;
+    height: 6vh;
+    font-size: 15px;
+    font-weight: bolder;
+    background-color: teal;
 }
 
 .friendshipBtn:hover {
-  cursor: pointer;
-  background-color: turquoise;
+    cursor: pointer;
+    background-color: turquoise;
 }
 
 .profPicFriends {
-  width: auto;
-  height: 100px;
-  border-radius: 20%;
+    width: auto;
+    height: 100px;
+    border-radius: 20%;
 }
 
 .friendsWrapper {
-  height: 75vh;
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 50% 50%;
+    height: 75vh;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
 }
 
 .friendsWrapper h2 {
-  margin-top: 0;
+    margin-top: 0;
 }
 
 .acceptedFriendsContainer {
-  font-weight: bolder;
-  font-family: arial;
-  color: teal;
-  font-size: 18px;
-  margin: 2% 3%;
-  grid-column: 1;
-  grid-row: 1;
-  border: solid 2px teal;
-  width: 45vw;
-  padding: 5px 10px;
-  height: 36vh;
-  overflow: auto;
-  border-radius: 3vh;
-  background-color: rgba(238, 238, 238, 0.8);
+    font-weight: bolder;
+    font-family: arial;
+    color: teal;
+    font-size: 18px;
+    margin: 2% 3%;
+    grid-column: 1;
+    grid-row: 1;
+    border: solid 2px teal;
+    width: 45vw;
+    padding: 5px 10px;
+    height: 36vh;
+    overflow: auto;
+    border-radius: 3vh;
+    background-color: rgba(238, 238, 238, 0.8);
 }
 
 .pendingReqContainer {
-  background-color: rgba(238, 238, 238, 0.8);
-  margin: 2% 8%;
-  grid-column: 2;
-  grid-row: 1;
-  font-weight: bolder;
-  font-family: arial;
-  color: teal;
-  font-size: 18px;
-  border: solid 2px teal;
-  padding: 5px 10px;
-  margin: 2% 2%;
-  border: solid 2px teal;
-  width: 41vw;
-  padding: 0 5%;
-  height: 38vh;
-  overflow: auto;
-  border-radius: 3vh;
+    background-color: rgba(238, 238, 238, 0.8);
+    margin: 2% 8%;
+    grid-column: 2;
+    grid-row: 1;
+    font-weight: bolder;
+    font-family: arial;
+    color: teal;
+    font-size: 18px;
+    border: solid 2px teal;
+    padding: 5px 10px;
+    margin: 2% 2%;
+    border: solid 2px teal;
+    width: 41vw;
+    padding: 0 5%;
+    height: 38vh;
+    overflow: auto;
+    border-radius: 3vh;
 }
 
 .noFriendsContainer {
-  font-weight: bolder;
-  font-family: arial;
-  color: teal;
-  font-size: 18px;
-  margin: 3% 2%;
-  grid-column: 1/3;
-  grid-row: 2;
-  border: solid 2px teal;
-  width: 93vw;
-  padding: 5px 10px;
-  height: 36vh;
-  overflow: auto;
-  border-radius: 3vh;
-  background-color: rgba(238, 238, 238, 0.8);
-  display: grid;
-  grid-template-columns: 50% 50%;
+    font-weight: bolder;
+    font-family: arial;
+    color: teal;
+    font-size: 18px;
+    margin: 3% 2%;
+    grid-column: 1/3;
+    grid-row: 2;
+    border: solid 2px teal;
+    width: 93vw;
+    padding: 5px 10px;
+    height: 36vh;
+    overflow: auto;
+    border-radius: 3vh;
+    background-color: rgba(238, 238, 238, 0.8);
+    display: grid;
+    grid-template-columns: 50% 50%;
 }
 
 .chatHeadline {}
 
 h2 {
-  color: rgb(57, 91, 82);
-  font-size: 40px;
-  font-family: "Cookie", cursive;
-  /* margin: 0; */
+    color: rgb(57, 91, 82);
+    font-size: 40px;
+    font-family: "Cookie", cursive;
 }
 
 .acceptedFriends {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 3% 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 3% 0;
 }
 
 .pendingReq {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 3% 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 3% 0;
 }
 
 .noStatusUser {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  margin: 3% 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 3% 0;
 }
 
 .friendsBtn {
-  float: right;
-  margin-right: 10%;
-  vertical-align: middle;
-  border-radius: 5vh;
-  width: 33%;
-  height: 35px;
-  font-size: 15px;
-  font-weight: 700px;
-  background-color: teal;
+    float: right;
+    margin-right: 10%;
+    vertical-align: middle;
+    border-radius: 5vh;
+    width: 33%;
+    height: 35px;
+    font-size: 15px;
+    font-weight: 700px;
+    background-color: teal;
 }
 
 .friendsBtn:hover {
-  cursor: pointer;
-  background-color: turquoise;
+    cursor: pointer;
+    background-color: turquoise;
 }
 
 .loader {
-  color: teal;
-  font-size: 20px;
-  margin: 100px auto;
-  width: 1em;
-  height: 1em;
-  border-radius: 50%;
-  position: relative;
-  text-indent: -9999em;
-  -webkit-animation: load4 1.3s infinite linear;
-  animation: load4 1.3s infinite linear;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
+    color: teal;
+    font-size: 20px;
+    margin: 100px auto;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    position: relative;
+    text-indent: -9999em;
+    -webkit-animation: load4 1.3s infinite linear;
+    animation: load4 1.3s infinite linear;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
 }
 
 .onlineFriends {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin: 1vw 1vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 1vw 1vh;
 }
 
 .profPicOnlineBox {
-  height: 8vh;
-  width: 8vh;
-  overflow: hidden;
-  border-radius: 50vh;
-  justify-content: center;
-  align-items: center;
-  display: flex;
+    height: 8vh;
+    width: 8vh;
+    overflow: hidden;
+    border-radius: 50vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
 
 .profPicOnline {
-  width: auto;
-  max-height: 12vh;
-  align-self: center;
-  justify-self: center;
+    width: auto;
+    max-height: 12vh;
+    align-self: center;
+    justify-self: center;
 }
 
 .onlineNames {
-  margin-left: 3%;
-  font-size: 15px;
-  font-family: arial;
+    margin-left: 3%;
+    font-size: 15px;
+    font-family: arial;
 }
 
 .onlineUsersHeadline {
-  /* text-align: center; */
-  margin: 0 5%;
-  font-family: "Cookie", cursive;
-  font-size: 30px;
+    margin: 0 5%;
+    font-family: "Cookie", cursive;
+    font-size: 30px;
 }
 
 .onlineUserBox {
-  background-color: rgba(238, 238, 238, 0.8);
-  width: 20vw;
-  height: 70vh;
-  right: -22vw;
-  position: absolute;
-  border-radius: 3%;
-  padding-top: 1%;
-  color: teal;
-  font-weight: bolder;
-  z-index: 2;
-  top: 0;
-  overflow: scroll;
+    background-color: rgba(238, 238, 238, 0.8);
+    width: 20vw;
+    height: 70vh;
+    right: -22vw;
+    position: absolute;
+    border-radius: 3%;
+    padding-top: 1%;
+    color: teal;
+    font-weight: bolder;
+    z-index: 2;
+    top: 0;
+    overflow: scroll;
 }
 
 .chatBox {
-  background-color: rgba(0, 128, 128, 0.8);
-  border-radius: 3vh;
-  border: 1px solid teal;
-  height: 50vh;
-  padding: 5px 5px;
-  grid-row: 1;
-  overflow: scroll;
+    background-color: rgba(0, 128, 128, 0.8);
+    border-radius: 3vh;
+    border: 1px solid teal;
+    height: 50vh;
+    padding: 5px 5px;
+    grid-row: 1;
+    overflow: scroll;
 }
 
 .chatUserInfo {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .chatMsgs {
-  display: grid;
-  color: white;
-  margin: 3% 3%;
+    display: grid;
+    color: white;
+    margin: 3% 3%;
 }
 
 .indChatMsg {
-  margin: 10px 0px;
+    margin: 10px 0px;
 }
 
 .chatPic img {
-  width: 50px;
-  height: 50px;
-  justify-self: space-around;
+    width: 50px;
+    height: 50px;
+    justify-self: space-around;
 }
 
 .chatUser {
-  font-size: 13px;
-  margin: 0 10px;
+    font-size: 13px;
+    margin: 0 10px;
 }
 
 .chatTime {
-  color: white;
-  font-style: italic;
-  font-size: 12px;
+    color: white;
+    font-style: italic;
+    font-size: 12px;
 }
 
 .chatText {
-  font-family: cookie, cursive;
-  color: white;
-  font-size: 30px;
-  word-wrap: break-word;
+    font-family: cookie, cursive;
+    color: white;
+    font-size: 30px;
+    word-wrap: break-word;
 }
 
 .chatTextingPart {
-  margin-top: 3vh;
-  grid-row: 2;
-  /* width: 465px; */
-  /* justify-self: center; */
-  display: flex;
-  justify-content: space-evenly;
+    margin-top: 3vh;
+    grid-row: 2;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .chatBtn {
-  height: 5vh;
-  border-radius: 5px;
-  font-size: 15px;
-  font-weight: bolder;
-  background-color: teal;
+    height: 5vh;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bolder;
+    background-color: teal;
 }
 
 .chatBtn:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .chatTextBox {
-  height: 20vh;
-  width: 35vw;
-  vertical-align: bottom;
-  /* background-image: url(./ivy.png); */
-  font-weight: bold;
-  font-size: 18px;
-  color: teal;
-  /* text-shadow: 1px 1px 10px #000, 1px 1px 10px #000; */
+    height: 20vh;
+    width: 35vw;
+    vertical-align: bottom;
+    font-weight: bold;
+    font-size: 18px;
+    color: teal;
 }
 
 .chatWrapper {
-  margin-top: 2vh;
-  display: grid;
-  grid-template-rows: 60% 40%;
-  width: 50vw;
-  position: absolute;
-  left: 25vw;
+    margin-top: 2vh;
+    display: grid;
+    grid-template-rows: 60% 40%;
+    width: 50vw;
+    position: absolute;
+    left: 25vw;
 }
 
 .errmsg {
-  font-size: 18px;
-  color: red;
+    font-size: 18px;
+    color: red;
 }
 
 ::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 @-webkit-keyframes load4 {
-  0%, 100% {
-    box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
-  }
-  12.5% {
-    box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
-  }
-  25% {
-    box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
-  }
-  37.5% {
-    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
-  }
-  50% {
-    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
-  }
-  62.5% {
-    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
-  }
-  75% {
-    box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
-  }
-  87.5% {
-    box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
-  }
+    0%,
+    100% {
+        box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
+    }
+    12.5% {
+        box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    }
+    25% {
+        box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    }
+    37.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    }
+    50% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    }
+    62.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+    }
+    75% {
+        box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+    }
+    87.5% {
+        box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+    }
 }
 
 @keyframes load4 {
-  0%, 100% {
-    box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
-  }
-  12.5% {
-    box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
-  }
-  25% {
-    box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
-  }
-  37.5% {
-    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
-  }
-  50% {
-    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
-  }
-  62.5% {
-    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
-  }
-  75% {
-    box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
-  }
-  87.5% {
-    box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
-  }
+    0%,
+    100% {
+        box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
+    }
+    12.5% {
+        box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    }
+    25% {
+        box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+    }
+    37.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    }
+    50% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    }
+    62.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+    }
+    75% {
+        box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+    }
+    87.5% {
+        box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+    }
 }

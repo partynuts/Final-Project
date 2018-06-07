@@ -1,4 +1,4 @@
-import React from "react";
+mport React from "react";
 import axios from "../axios";
 import { connect } from "react-redux";
 import {
@@ -11,9 +11,7 @@ import { Link } from "react-router-dom";
 
 class Friends extends React.Component {
   componentDidMount() {
-    console.log("comp did mount in friends");
-    console.log("NIX DA", this.props);
-    this.props.dispatch(getFriendsAndRequests());
+      this.props.dispatch(getFriendsAndRequests());
     this.props.dispatch(getOtherUsers());
   }
 
